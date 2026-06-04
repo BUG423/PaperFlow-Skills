@@ -1,9 +1,23 @@
 ---
 name: ccf-conference-paper-reviewer
 description: "Score, review, meta-review, checklist-audit, and revise conference research papers with venue-aware CS/CCF-A rubrics. Use when the user asks to review, rate, score, judge acceptance odds, simulate reviewers/area chairs/meta-reviewers, run review checklists, diagnose weak scores, compare venue fit, or produce revision actions for AAAI, NeurIPS, ICML, ICLR, ACL, CVPR, ICCV, ECCV, SIGKDD, SIGMOD, SIGCOMM, CCS, CHI, STOC/FOCS, or similar computer-science conference papers."
+metadata:
+  ccf_skill_controls:
+    ask_before_optional_modules: true
+    if_ask_disabled: use_optional_modules_by_default
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
 ---
 
 # CCF Conference Paper Reviewer
+
+## Invocation Controls
+
+Treat sibling skills as optional modules unless the user explicitly named them in the current request. Before the first optional handoff in a conversation, ask whether to use that module. If `metadata.ccf_skill_controls.ask_before_optional_modules` is `false`, optional modules may be used by default, but an explicit user denylist still wins.
+
+If the user says not to use, disable, skip, or avoid a sibling skill, do not invoke or simulate that skill for the rest of the conversation. Use this skill's local fallback instead: review diagnosis, revision action queue, and re-score gate without cross-skill execution.
+
+Do not invent results, citations, experiments, reviewer consensus, score lift, or acceptance odds. Expected score impact must be grounded in the manuscript or in explicitly proposed revisions.
 
 ## Core Rule
 
@@ -21,7 +35,7 @@ For every review, score, meta-review, or revision-planning task, complete this c
 6. Fatal risks are triaged before local writing issues.
 7. Multi-reviewer and AC/meta-review views are included for full-paper reviews.
 8. Every material weakness is converted into a revision action or marked as requiring new results.
-9. Re-score gate is applied before reporting expected score lift.
+9. Re-score gate is applied before reporting expected score lift, and any optional module transition to writing, rebuttal, or idea-stage skills is ask-first unless explicitly requested or metadata disables asking.
 
 Load `references/review-checklists.md` for full-paper review, score-only review, AC/meta-review, revision planning, or post-revision re-score.
 
@@ -37,8 +51,8 @@ Load `references/review-checklists.md` for full-paper review, score-only review,
 5. Load `references/venue-review-styles.md` when a target venue or CCF-A family is named. Adjust the rubric weights, expected evidence, and review voice to that venue.
 6. Load `references/score-calibration.md` whenever producing numeric scores, acceptance-risk labels, reviewer simulations, or before/after revision deltas.
 7. Produce at least three perspectives for full-paper review: method/soundness reviewer, evidence/experiment reviewer, and venue/AC reviewer. Add ethics/reproducibility or theory/user-study reviewers when relevant.
-8. Convert every material weakness into an action using `references/revision-actions.md`. Classify each action as writing-fixable, analysis-fixable, citation/positioning, figure/table, requires-new-result, accepted-limitation, or venue-mismatch.
-9. For closed-loop improvement, re-score after the proposed revision plan or rewritten section and report the expected score delta only for changes supported by the text or available evidence.
+8. Convert every material weakness into an action using `references/revision-actions.md`. Classify each action as writing-fixable, analysis-fixable, citation/positioning, figure/table, requires-new-result, accepted-limitation, or venue-mismatch. Ask before offering the action queue to `ccf-writing-skills`; if denied, output the queue only.
+9. For closed-loop improvement, re-score after the proposed revision plan or rewritten section and report the expected score delta only for changes supported by the text or available evidence. Ask before using any sibling skill to perform the revision.
 
 ## Output Contracts
 
@@ -82,7 +96,7 @@ For a short section or paragraph, still report the local reviewer risk, the exac
 
 ## Coordination With Writing Skills
 
-When this skill is used with `ccf-writing-skills`, act as the scoring and adversarial-review module. Give `ccf-writing-skills` a concrete action queue instead of vague advice:
+When this skill is explicitly used with `ccf-writing-skills`, or the user confirms the optional module transition, act as the scoring and adversarial-review module. If writing is denied, provide the same concrete action queue to the user without invoking the writing skill:
 
 ```text
 Issue:
@@ -106,4 +120,4 @@ Load only what is needed:
 - `references/review-checklists.md`: Use to prevent omissions in full review, score-only review, AC/meta-review, revision planning, and re-score modes.
 - `references/source-notes.md`: Use when source provenance, official-policy checks, or method rationale matters.
 
-If the user's task is post-review communication rather than paper scoring or review, use `ccf-conference-paper-rebuttal` instead of this skill. If the user asks to score an early idea rather than a manuscript, use `ccf-idea-reviewer`.
+If the user's task is post-review communication rather than paper scoring or review, ask before switching to `ccf-conference-paper-rebuttal` unless explicitly requested. If the user asks to score an early idea rather than a manuscript, ask before switching to `ccf-idea-reviewer`; if not confirmed, provide only a scope warning.

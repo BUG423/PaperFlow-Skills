@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Conference Paper Reviewer"
   short_description: "Checklist-audit, score, and review CCF-A conference papers with venue-aware rubrics."
-  default_prompt: "Use $ccf-conference-paper-reviewer to checklist-audit, review, and score a conference paper."
+  default_prompt: "Use $ccf-conference-paper-reviewer to checklist-audit, review, and score a conference paper. Ask before optional handoff to writing, rebuttal, or idea skills; respect disabled skills and do not invent results, experiments, reviewer consensus, or score lift."

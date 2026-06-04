@@ -1,9 +1,23 @@
 ---
 name: ccf-idea-optimizer
 description: "Optimize early research idea drafts into CCF A-class conference problem, method, innovation, and experiment plans. Use when the user asks to improve, reshape, compare, or develop research ideas, rough project directions, problem statements, methods, novelty claims, contribution framing, or acceptance-oriented experiment plans for NeurIPS, ICML, ICLR, AAAI, ACL, CVPR, ICCV, SIGMOD, KDD, SIGCOMM, CCS, CHI, or similar CCF-A venues."
+metadata:
+  ccf_skill_controls:
+    ask_before_optional_modules: true
+    if_ask_disabled: use_optional_modules_by_default
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
 ---
 
 # CCF Idea Optimizer
+
+## Invocation Controls
+
+Treat sibling skills as optional modules unless the user explicitly named them in the current request. Before the first optional handoff in a conversation, ask whether to use that module. If `metadata.ccf_skill_controls.ask_before_optional_modules` is `false`, optional modules may be used by default, but an explicit user denylist still wins.
+
+If the user says not to use, disable, skip, or avoid a sibling skill, do not invoke or simulate that skill for the rest of the conversation. Use this skill's local fallback instead: compact risk scan, action queue, or next-step note without cross-skill execution.
+
+Do not invent literature, results, baselines, experiments, reviewer reactions, or novelty evidence. Mark unsearched novelty and missing evidence as uncertainty.
 
 ## Core Rule
 
@@ -21,7 +35,7 @@ For every substantial idea optimization task, complete this checklist before fin
 6. Innovation type is classified: problem, setting, method, data/benchmark, theory, system, empirical finding, evaluation, or synthesis.
 7. The experiment plan tests the central claim and includes baselines, ablations, robustness, and failure analysis as needed by the venue.
 8. Reviewer risks are labeled as writing-fixable, design-fixable, evidence-fixable, requires-new-result, venue-mismatch, or likely-pivot.
-9. If the idea reaches a viable plan, hand it to `ccf-writing-skills`; if it needs scoring, hand it to `ccf-idea-reviewer`.
+9. Any optional module transition to `ccf-idea-reviewer` or `ccf-writing-skills` is ask-first unless explicitly requested or metadata disables asking; if denied, output a local risk scan or next-step note only.
 
 Load `references/idea-intake.md` when inputs are incomplete or several idea drafts must be normalized.
 
@@ -34,8 +48,8 @@ Load `references/idea-intake.md` when inputs are incomplete or several idea draf
 5. Sharpen the problem and method. Load `references/problem-method-blueprint.md`; convert vague motivation into a decision-relevant problem and convert method names into mechanisms, assumptions, failure modes, and alternatives.
 6. Shape the innovation. Decide the strongest honest contribution type and remove unsupported or diluted claims.
 7. Design the minimum convincing evidence package. Load `references/experiment-design.md`; specify datasets, baselines, ablations, metrics, stress tests, efficiency, user study, proof, or systems evaluation as required by the venue family.
-8. Run an internal acceptability pass. Use `ccf-idea-reviewer` when available; otherwise perform a compact multi-expert risk scan focused only on problem and method.
-9. Produce an optimized idea plan, ranked pivots, and a handoff note for `ccf-writing-skills` only when the problem-method-evidence chain is viable.
+8. Run an internal acceptability pass. Ask before using `ccf-idea-reviewer` as an optional scoring module; if it is denied or disabled, perform a compact multi-expert risk scan focused only on problem and method.
+9. Produce an optimized idea plan, ranked pivots, and a writing-readiness note. Ask before offering the viable plan to `ccf-writing-skills`; if writing is denied or not confirmed, stop at the idea plan.
 
 ## Output Contracts
 
@@ -53,7 +67,7 @@ Experiment plan:
 Closest-work / novelty unknowns:
 Reviewer-risk register:
 Suggested pivots:
-Handoff readiness:
+Optional next-module decision:
 Checklist status:
 ```
 
@@ -80,4 +94,4 @@ Load only what is needed:
 - `references/research-taste.md`: Use when the user asks what makes research good, elegant, timely, or likely to survive top-conference review.
 - `references/source-notes.md`: Use when provenance, source basis, or current-policy checks matter.
 
-If the user's request is only to score an idea without optimizing it, use `ccf-idea-reviewer`. If the user already has a manuscript draft, use `ccf-writing-skills` or `ccf-conference-paper-reviewer` instead.
+If the user's request is only to score an idea without optimizing it, ask before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user already has a manuscript draft, ask before switching to `ccf-writing-skills` or `ccf-conference-paper-reviewer`; if not confirmed, provide only a brief scope note.

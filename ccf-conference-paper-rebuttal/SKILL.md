@@ -1,9 +1,23 @@
 ---
 name: ccf-conference-paper-rebuttal
 description: "Write, revise, structure, checklist-audit, and produce TeX templates for conference paper rebuttals, author responses, response letters, revision summaries, and responses to reviewer comments for computer-science conferences such as AAAI, NeurIPS, ICML, ICLR, ACL, CVPR, ICCV, ECCV, SIGKDD, SIGMOD, SIGCOMM, CCS, CHI, STOC/FOCS, and similar venues. Use when the user asks to answer reviewers, draft rebuttal text, create a rebuttal TeX file, plan an author response, address review comments, respond to meta-review or AC concerns, or prepare a resubmission response."
+metadata:
+  ccf_skill_controls:
+    ask_before_optional_modules: true
+    if_ask_disabled: use_optional_modules_by_default
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
 ---
 
 # CCF Conference Paper Rebuttal
+
+## Invocation Controls
+
+Treat sibling skills as optional modules unless the user explicitly named them in the current request. Before the first optional handoff in a conversation, ask whether to use that module. If `metadata.ccf_skill_controls.ask_before_optional_modules` is `false`, optional modules may be used by default, but an explicit user denylist still wins.
+
+If the user says not to use, disable, skip, or avoid a sibling skill, do not invoke or simulate that skill for the rest of the conversation. Use this skill's local fallback instead: issue table, response strategy, draft response, and promised-change list without cross-skill execution.
+
+Do not invent results, experiments, paper changes, reviewer concessions, or likely score impact. Commit only to clarifications, analyses, or revisions that the user can support.
 
 ## Core Rule
 
@@ -39,7 +53,7 @@ Load `references/response-checklists.md` for full response letters, multiple rev
 5. Keep each response concise: acknowledge, quote the core concern, answer directly, cite evidence, address the deeper intent, state exact changes or limitations, and close with shared ground.
 6. For full rebuttals, default to a TeX file with three sections: `General Response`, `Common Concerns`, and `Reviewer-Specific Clarifications`. Load `references/tex-templates.md` and use `assets/templates/default-general-common-reviewer.tex` unless the user requests another template.
 7. Load `references/response-checklists.md` before finalizing to audit tone, evidence, promises, reviewer colors, quote-answer structure, and word budget.
-8. If manuscript rewriting is needed after the response plan, hand the action queue to `ccf-writing-skills`. If scoring the likely review impact is needed, use `ccf-conference-paper-reviewer`.
+8. If manuscript rewriting is needed after the response plan, ask before using `ccf-writing-skills`; if denied, output the revision action queue only. If scoring likely review impact is needed, ask before using `ccf-conference-paper-reviewer`; if denied, avoid score-impact claims.
 
 ## Output Contracts
 

@@ -87,7 +87,7 @@ Scan for:
 
 ## Score-Lifting Checklist
 
-Use with `score-lifting-loop.md` and, when available, `ccf-conference-paper-reviewer`.
+Use with `score-lifting-loop.md` and, only when explicitly requested or confirmed after the optional-module gate, `ccf-conference-paper-reviewer`.
 
 - Current likely score or stance is stated.
 - Target score or readiness threshold is stated.

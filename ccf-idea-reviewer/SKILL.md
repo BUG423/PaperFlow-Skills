@@ -1,9 +1,23 @@
 ---
 name: ccf-idea-reviewer
 description: "Score and triage early research ideas with multi-expert CCF A-class conference rubrics focused only on the problem and method. Use when the user asks to rate, rank, compare, select, judge acceptance potential, stress-test, or diagnose novelty, innovation, elegance, soundness, feasibility, topic fit, or fatal risks for rough research idea drafts before manuscript writing."
+metadata:
+  ccf_skill_controls:
+    ask_before_optional_modules: true
+    if_ask_disabled: use_optional_modules_by_default
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
 ---
 
 # CCF Idea Reviewer
+
+## Invocation Controls
+
+Treat sibling skills as optional modules unless the user explicitly named them in the current request. Before the first optional handoff in a conversation, ask whether to use that module. If `metadata.ccf_skill_controls.ask_before_optional_modules` is `false`, optional modules may be used by default, but an explicit user denylist still wins.
+
+If the user says not to use, disable, skip, or avoid a sibling skill, do not invoke or simulate that skill for the rest of the conversation. Use this skill's local fallback instead: score table, fatal-risk list, fixability table, and upgrade actions without cross-skill execution.
+
+Do not invent prior art, experimental evidence, reviewer sentiment, or acceptance odds. Separate low novelty from unknown novelty, and report confidence independently from score.
 
 ## Core Rule
 
@@ -21,7 +35,7 @@ Complete this checklist before any idea score, ranking, or recommendation:
 6. Fatal risks are separated from fixable weaknesses.
 7. Confidence is reported separately from score.
 8. The final recommendation is one of: accept-to-develop, revise, pivot, abandon, or needs-literature-search.
-9. Writing issues are handed to `ccf-writing-skills`; idea optimization is handed to `ccf-idea-optimizer`.
+9. Any optional module transition to `ccf-idea-optimizer` or `ccf-writing-skills` is ask-first unless explicitly requested or metadata disables asking; if denied, output upgrade actions only.
 
 Load `references/rubric.md` whenever producing numeric scores.
 
@@ -34,7 +48,7 @@ Load `references/rubric.md` whenever producing numeric scores.
 5. Load `references/rubric.md` and score the 10 dimensions. Use `references/calibration.md` to aggregate, calibrate confidence, apply fatal gates, and choose a recommendation.
 6. Convert every major weakness into an upgrade action. Label actions as problem-refinement, method-redesign, novelty-grounding, evidence-design, feasibility-check, venue-switch, or pivot.
 7. For multiple ideas, rank by fatal-risk-adjusted score, not by average score alone. Prefer ideas with fewer fatal novelty/soundness/evidence risks even if they are less fashionable.
-8. If the idea is viable but underdeveloped, hand the action queue to `ccf-idea-optimizer`. If it is manuscript-ready, hand off to `ccf-writing-skills`.
+8. If the idea is viable but underdeveloped, ask whether to use `ccf-idea-optimizer` for targeted repair. If it is manuscript-ready, ask whether to use `ccf-writing-skills`. If either module is denied, stop at the score, risks, and action queue.
 
 ## Output Contracts
 
@@ -52,7 +66,7 @@ Fatal risks:
 Fixability table:
 Upgrade actions:
 Recommendation:
-Next skill handoff:
+Optional next-module decision:
 Checklist status:
 ```
 
@@ -78,4 +92,4 @@ Load only what is needed:
 - `references/calibration.md`: Use for weighted scores, fatal gates, confidence, recommendations, and multi-idea tournaments.
 - `references/source-notes.md`: Use when explaining provenance, official criteria, or current literature/venue checks.
 
-If the user asks to improve the idea rather than score it, use `ccf-idea-optimizer`. If the user provides a full paper draft, use `ccf-conference-paper-reviewer`.
+If the user asks to improve the idea rather than score it, ask before switching to `ccf-idea-optimizer` unless explicitly named. If the user provides a full paper draft, ask before switching to `ccf-conference-paper-reviewer`; if not confirmed, provide only idea-stage caveats.

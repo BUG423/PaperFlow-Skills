@@ -48,22 +48,31 @@ The family is organized as a layered research workflow.
 | **Response Layer** | Translate reviews into clear author responses and revision commitments. | `ccf-conference-paper-rebuttal` |
 | **Maintenance Layer** | Create, refine, and validate skill modules. | `forge-skills` |
 
-The workflow has two review gates rather than one fixed linear chain:
+The workflow is gated rather than automatic. Every arrow that enters another skill is an optional module gate: if the skill was not explicitly requested, the assistant should ask before using it; if the user disabled it, the workflow must switch to a local fallback.
 
 ```text
 raw idea
-  -> ccf-idea-optimizer             : first-pass problem / method / evidence framing
-  -> ccf-idea-reviewer              : problem-method gate
-       if weak but fixable          : return to ccf-idea-optimizer for targeted repair
-       if fundamentally misaligned  : pivot or stop
-       if viable                    : pass to ccf-writing-skills
-  -> ccf-writing-skills             : manuscript argument and section construction
-  -> ccf-conference-paper-reviewer  : pre-submission review gate
-       if deductions are fixable    : return to ccf-writing-skills for revision
-       if external reviews arrive   : use ccf-conference-paper-rebuttal
+  -> [ask/if enabled] ccf-idea-optimizer             : problem / method / evidence framing
+  -> [ask/if enabled] ccf-idea-reviewer              : problem-method gate
+       if weak but fixable and enabled               : return to optimizer for targeted repair
+       if fundamentally misaligned                   : pivot or stop
+       if viable and writing is enabled              : writing module becomes available
+
+writing request
+  -> ccf-writing-skills                              : writing-only by default
+       idea-scope change requires explicit confirm   : otherwise mark Idea-level risk
+       paper review is optional                      : ask before ccf-conference-paper-reviewer
+
+real reviews arrive
+  -> ccf-conference-paper-rebuttal                   : author response and revision promises
+       manuscript rewrite or review-impact scoring   : ask before optional module use
 ```
 
-The second `ccf-idea-optimizer` pass is therefore not duplication. The first pass gives a raw direction enough structure to be judged; the second pass, only when needed, uses the reviewer diagnosis to repair a specific weakness, narrow the claim, or pivot the method. The rebuttal skill is also conditional: it belongs to the post-review phase, while `ccf-conference-paper-reviewer` belongs to pre-submission pressure testing.
+**Writing-only mode.** `ccf-writing-skills` does not modify the research topic, core problem, method mechanism, experiment setting, reported results, or conclusion direction by default. It may improve expression, structure, storyline, claim-evidence alignment, and reviewer-facing packaging. Idea-level changes require explicit confirmation even if they look helpful.
+
+**Session denylist.** If a user says not to use a skill, that skill is disabled for the conversation. The assistant must not route around the decision by simulating the disabled module; it should use a local fallback such as a compact risk scan, action queue, or writing-only checklist.
+
+The second `ccf-idea-optimizer` pass is therefore not duplication and not automatic. The first pass gives a raw direction enough structure to be judged; a later pass happens only when the user allows optimizer again after reviewer diagnosis. The rebuttal skill is also conditional: it belongs to the post-review phase, while `ccf-conference-paper-reviewer` belongs to pre-submission pressure testing.
 
 <p align="center">
   <img src="assets/ccfa-skills-architecture.svg" alt="CCFA Skills workflow gates" width="100%">

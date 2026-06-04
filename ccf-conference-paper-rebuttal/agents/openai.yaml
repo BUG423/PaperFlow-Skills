@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Conference Paper Rebuttal"
   short_description: "Write TeX rebuttals and author responses for CCF-A conference reviews."
-  default_prompt: "Use $ccf-conference-paper-rebuttal to write a TeX conference paper rebuttal or author response."
+  default_prompt: "Use $ccf-conference-paper-rebuttal to write a TeX conference paper rebuttal or author response. Ask before optional handoff to writing or reviewer skills, respect disabled skills, and do not invent results, paper changes, reviewer concessions, or score impact."

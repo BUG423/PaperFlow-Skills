@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Optimizer"
   short_description: "Optimize early CCF-A research ideas."
-  default_prompt: "Use $ccf-idea-optimizer to improve my early research idea for a CCF-A conference."
+  default_prompt: "Use $ccf-idea-optimizer to improve my early research idea for a CCF-A conference. Ask before optional handoff to other CCFA skills, respect any disabled skills, and do not invent literature, results, experiments, or reviewer impact."

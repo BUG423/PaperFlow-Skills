@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Reviewer"
   short_description: "Score early CCF-A research ideas."
-  default_prompt: "Use $ccf-idea-reviewer to score my research idea with multi-expert CCF-A criteria."
+  default_prompt: "Use $ccf-idea-reviewer to score my research idea with multi-expert CCF-A criteria. Ask before optional handoff to optimizer or writing skills, respect disabled skills, and do not invent prior art, evidence, or acceptance odds."

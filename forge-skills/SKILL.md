@@ -1,9 +1,21 @@
 ---
 name: forge-skills
 description: "Design, create, update, and validate Codex skills in local .codex/skills folders. Use when the user wants to create a new skill, improve an existing SKILL.md, turn repeated workflows/domain knowledge/tool usage into reusable skills, decide whether to add scripts/references/assets, avoid name conflicts, write Chinese or bilingual skill instructions, or scaffold and verify a skill end to end."
+metadata:
+  ccf_skill_controls:
+    ask_before_optional_modules: true
+    if_ask_disabled: use_optional_modules_by_default
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
 ---
 
 # Forge Skills
+
+## Invocation Controls
+
+When maintaining the CCFA skill family, preserve `metadata.ccf_skill_controls` in each `SKILL.md`. Do not add automatic sibling-skill transitions without an ask-first gate and a denylist-respecting fallback.
+
+If the user disables a skill or asks for writing-only behavior, encode that boundary directly in the edited skill instructions. Do not weaken idea-scope protection in writing skills unless the user explicitly requests that policy change.
 
 ## Core Rule
 
