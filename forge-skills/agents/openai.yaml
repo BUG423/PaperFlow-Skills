@@ -1,0 +1,4 @@
+interface:
+  display_name: "Forge Skills"
+  short_description: "Design and create Codex skills"
+  default_prompt: "Use $forge-skills to design and create a new Codex skill from my goal and examples."

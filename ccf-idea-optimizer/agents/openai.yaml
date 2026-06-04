@@ -1,0 +1,4 @@
+interface:
+  display_name: "CCF Idea Optimizer"
+  short_description: "Optimize early CCF-A research ideas."
+  default_prompt: "Use $ccf-idea-optimizer to improve my early research idea for a CCF-A conference."
