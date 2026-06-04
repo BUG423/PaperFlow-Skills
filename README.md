@@ -46,18 +46,26 @@ The family is organized as a layered research workflow.
 | **Response Layer** | Translate reviews into clear author responses and revision commitments. | `ccf-conference-paper-rebuttal` |
 | **Maintenance Layer** | Create, refine, and validate skill modules. | `forge-skills` |
 
-The intended loop is iterative:
+The workflow has two review gates rather than one fixed linear chain:
 
 ```text
 raw idea
-  -> optimize the research frame
-  -> review the problem and method
-  -> revise, narrow, or pivot
-  -> build the manuscript
-  -> simulate review
-  -> revise the submission
-  -> respond to reviews
+  -> ccf-idea-optimizer             : first-pass problem / method / evidence framing
+  -> ccf-idea-reviewer              : problem-method gate
+       if weak but fixable          : return to ccf-idea-optimizer for targeted repair
+       if fundamentally misaligned  : pivot or stop
+       if viable                    : pass to ccf-writing-skills
+  -> ccf-writing-skills             : manuscript argument and section construction
+  -> ccf-conference-paper-reviewer  : pre-submission review gate
+       if deductions are fixable    : return to ccf-writing-skills for revision
+       if external reviews arrive   : use ccf-conference-paper-rebuttal
 ```
+
+The second `ccf-idea-optimizer` pass is therefore not duplication. The first pass gives a raw direction enough structure to be judged; the second pass, only when needed, uses the reviewer diagnosis to repair a specific weakness, narrow the claim, or pivot the method. The rebuttal skill is also conditional: it belongs to the post-review phase, while `ccf-conference-paper-reviewer` belongs to pre-submission pressure testing.
+
+<p align="center">
+  <img src="assets/ccfa-skills-architecture.svg" alt="CCFA Skills workflow gates" width="100%">
+</p>
 
 This structure matters because CCF-A review is not a single score but a negotiation among novelty, significance, soundness, evidence, clarity, reproducibility, and venue fit. The skills separate these dimensions while keeping their dependencies visible.
 
