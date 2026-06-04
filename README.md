@@ -2,12 +2,12 @@
 
 # CCFA Skills
 
-### A Codex skill family for turning early research ideas into CCF-A-ready submissions.
+### A Codex skill family for idea-first, reviewer-aware CCF-A research.
 
 <p>
-  <a href="#english">English</a> ·
-  <a href="#简体中文">简体中文</a> ·
-  <a href="#繁體中文">繁體中文</a>
+  <strong>English</strong> ·
+  <a href="README.zh-CN.md">简体中文</a> ·
+  <a href="README.zh-TW.md">繁體中文</a>
 </p>
 
 <p>
@@ -22,46 +22,94 @@
 
 ---
 
-## English
+## A Small Story
 
-### The Story
+A researcher often comes to an assistant with a sentence that sounds like a paper idea:
 
-Many papers do not fail because the writing is poor. They fail earlier, when the idea is still soft: the problem is not sharp enough, the method is described as a collection of components, the novelty is not grounded against close work, or the experiments do not quite answer the reviewer’s real question.
+> "I want to improve method X for task Y and submit it to CVPR / NeurIPS / ACL."
 
-**CCFA Skills** is built for that earlier moment. It treats a CCF-A submission as a full research pipeline: first strengthen the idea, then stress-test the problem and method, then write, review, revise, and respond. Each skill plays a role in the same family, so a project can move from a rough direction to a reviewer-aware paper without losing the thread.
+The obvious response is to help write an abstract, polish an introduction, or suggest more experiments. But that is often too late. Many papers are already fragile before a single paragraph is written: the problem is underspecified, the method is a stack of familiar components, the novelty is not grounded against close work, and the experiment plan does not answer the question a serious reviewer would actually ask.
 
-### Why This Family Is Different
+**CCFA Skills** was built around a different premise: a strong CCF-A submission is not primarily a writing artifact. It is a chain of research decisions. The idea must become a precise problem; the problem must imply a mechanism; the mechanism must support an honest contribution; the contribution must be testable; and the final paper must reduce reviewer uncertainty rather than merely sound confident.
 
-- **Idea-first, not polish-first**: optimize the problem, mechanism, contribution, and evidence before polishing prose.
-- **CCF-A-aware judgment**: adapt expectations for NeurIPS, ICML, ICLR, AAAI, ACL, CVPR, ICCV, SIGMOD, KDD, SIGCOMM, CCS, CHI, and related venues.
-- **Multi-expert scoring**: review ideas through field, method, experiment, AC/venue, and skeptical prior-art perspectives.
-- **Closed-loop improvement**: convert reviewer-style objections into concrete idea, experiment, writing, and rebuttal actions.
-- **Progressive context design**: keep each `SKILL.md` compact and load deeper `references/` only when needed.
+This repository packages that philosophy as a family of Codex skills.
 
-### Skill Family
+## Design Thesis
 
-| Skill | Role in the family |
-| --- | --- |
-| `ccf-idea-optimizer` | Turns rough ideas into sharper problem-method-innovation-experiment plans. |
-| `ccf-idea-reviewer` | Scores early ideas with multi-expert CCF-A rubrics focused only on problem and method. |
-| `ccf-writing-skills` | Builds the paper story, sections, claim-evidence alignment, and score-lifting plan. |
-| `ccf-conference-paper-reviewer` | Simulates reviewers and AC/meta-review, then produces revision queues. |
-| `ccf-conference-paper-rebuttal` | Structures author responses, rebuttals, and TeX response templates. |
-| `forge-skills` | Helps create, validate, and maintain Codex skills. |
+The central design choice is to treat CCF-A preparation as a **closed-loop research system**, not a collection of independent prompts.
 
-### Recommended Workflow
+Top-tier conference review is usually a multi-objective judgment. Reviewers ask whether the problem matters, whether the idea is new, whether the method is technically meaningful, whether the evidence actually supports the claim, whether the work fits the venue, and whether the authors understand the limitations. A useful research assistant should therefore work across the same axes, not only at the surface level of prose.
+
+CCFA Skills decomposes this process into specialized but connected roles:
 
 ```text
 raw idea
-  -> ccf-idea-optimizer
-  -> ccf-idea-reviewer
-  -> ccf-idea-optimizer
-  -> ccf-writing-skills
-  -> ccf-conference-paper-reviewer
-  -> ccf-conference-paper-rebuttal
+  -> idea optimization
+  -> multi-expert idea review
+  -> idea revision or pivot
+  -> paper writing
+  -> reviewer simulation
+  -> rebuttal and response
 ```
 
-### Installation
+The family is intentionally opinionated: it favors early rejection of weak framing, explicit novelty uncertainty, claim-evidence discipline, and reviewer-facing risk registers. It does not try to make every idea sound publishable. It tries to discover what would make an idea genuinely more publishable.
+
+## Skill Family
+
+| Skill | Research role | Main output |
+| --- | --- | --- |
+| `ccf-idea-optimizer` | Turns rough ideas into venue-aware research plans. | Problem statement, method blueprint, innovation claim, experiment matrix, risk register. |
+| `ccf-idea-reviewer` | Scores only the problem and method before manuscript writing. | Multi-expert scores, fatal risks, confidence, revise / pivot / abandon decision. |
+| `ccf-writing-skills` | Converts a viable idea into a coherent CCF-A paper. | Storyline, section plan, claim-evidence map, score-lifting actions. |
+| `ccf-conference-paper-reviewer` | Simulates reviewer and AC/meta-review pressure. | Calibrated review, score blockers, revision queue, expected score lift. |
+| `ccf-conference-paper-rebuttal` | Handles post-review communication. | Issue table, response strategy, TeX rebuttal templates, promised paper changes. |
+| `forge-skills` | Maintains and extends the skill ecosystem. | New skill structure, validation checks, reference/resource organization. |
+
+## What Makes It Useful
+
+### 1. It Starts Before Writing
+
+The strongest intervention is often not better wording. It is discovering that the problem should be reframed, the method needs a mechanism, the benchmark claim is too broad, or the core experiment is missing. `ccf-idea-optimizer` and `ccf-idea-reviewer` are designed for this pre-writing stage.
+
+### 2. It Separates Idea Quality From Paper Quality
+
+An elegant paragraph cannot save a weak idea, and a promising idea can still be rejected if the paper fails to expose its contribution. The skill family separates these layers: idea-stage review focuses on problem and method; paper-stage review focuses on manuscript evidence, clarity, and venue fit.
+
+### 3. It Uses Multi-Expert Pressure
+
+`ccf-idea-reviewer` asks different expert roles to stress-test an idea: field expert, method expert, experiment expert, AC / venue expert, and skeptical prior-art expert. This is meant to approximate the diversity of concerns that appears in real program committee discussion.
+
+### 4. It Is Venue-Aware
+
+The same idea should not be packaged identically for CVPR, ACL, SIGMOD, CCS, CHI, or NeurIPS. The skills include CCF-A venue-family adapters so that problem framing, evidence design, limitations, and review risk are aligned with the target community.
+
+### 5. It Converts Criticism Into Actions
+
+The family is built around action queues: what to rewrite, what to test, what to weaken, what to support with evidence, what requires new results, and what should become an accepted limitation. The goal is not generic advice, but decision-relevant next steps.
+
+## Recommended Workflow
+
+```text
+1. Use ccf-idea-optimizer
+   Normalize the rough idea into problem, gap, challenge, insight, method, evidence, and limitation.
+
+2. Use ccf-idea-reviewer
+   Score the problem and method with multi-expert rubrics and identify fatal risks.
+
+3. Return to ccf-idea-optimizer
+   Revise, narrow, strengthen, or pivot based on the reviewer action queue.
+
+4. Use ccf-writing-skills
+   Build the full paper story, section structure, claim-evidence map, and score-lifting plan.
+
+5. Use ccf-conference-paper-reviewer
+   Simulate skeptical reviewers and convert likely deductions into revisions.
+
+6. Use ccf-conference-paper-rebuttal
+   When reviews arrive, answer concerns calmly, concretely, and with evidence.
+```
+
+## Installation
 
 ```powershell
 git clone https://github.com/mikubaka88/CCFA-Skills.git
@@ -69,116 +117,20 @@ Copy-Item -Recurse .\CCFA-Skills\ccf-* "$HOME\.codex\skills\"
 Copy-Item -Recurse .\CCFA-Skills\forge-skills "$HOME\.codex\skills\"
 ```
 
-### Example Prompts
+## Example Prompts
 
 ```text
-Use $ccf-idea-optimizer to improve this CVPR idea...
-Use $ccf-idea-reviewer to score these three research ideas...
-Use $ccf-writing-skills to rewrite my introduction for ICLR...
-Use $ccf-conference-paper-reviewer to simulate reviewers...
-Use $ccf-conference-paper-rebuttal to draft my author response...
+Use $ccf-idea-optimizer to improve this rough CVPR idea.
+Use $ccf-idea-reviewer to compare these three NeurIPS project directions.
+Use $ccf-writing-skills to build the storyline for my ICLR submission.
+Use $ccf-conference-paper-reviewer to simulate reviewer scores before submission.
+Use $ccf-conference-paper-rebuttal to draft an author response from these reviews.
 ```
 
----
+## Non-Goals
 
-## 简体中文
+CCFA Skills does not promise acceptance, invent results, fabricate related work, or turn unsupported claims into confident language. Its purpose is more disciplined: expose weak links early, help the researcher reason about trade-offs, and make every stage of the research pipeline more review-aware.
 
-### 开场故事
+## One-Sentence Introduction
 
-很多论文并不是输在文字不好，而是更早就埋下了风险：问题还不够锋利，方法只是组件堆叠，创新点没有和最近工作拉开距离，实验也没有真正回答审稿人最关心的问题。
-
-**CCFA Skills** 就是为这个更早的阶段设计的。它把 CCF-A 投稿看作一条完整研究流水线：先打磨 idea，再用多专家视角审视问题和方法，然后进入写作、模拟审稿、修改提分和 rebuttal。每个 skill 都是同一个家族里的一个角色，让一个粗糙方向能逐步成长为更有审稿意识的投稿方案。
-
-### 我们的优势
-
-- **先优化想法，再优化表达**：先解决问题定义、方法机制、贡献类型和证据链，再进入论文润色。
-- **面向 CCF-A 场景**：针对 NeurIPS、ICML、ICLR、AAAI、ACL、CVPR、ICCV、SIGMOD、KDD、SIGCOMM、CCS、CHI 等会议调整判断标准。
-- **多专家评分体系**：用领域专家、方法专家、实验专家、AC/venue 专家、skeptical prior-art 专家共同评估 idea。
-- **闭环提分**：把审稿式质疑转化为 idea、实验、写作和 rebuttal 的具体行动。
-- **渐进式上下文设计**：每个 `SKILL.md` 保持轻量，复杂规则放入 `references/`，需要时再加载。
-
-### Skill 家族
-
-| Skill | 家族角色 |
-| --- | --- |
-| `ccf-idea-optimizer` | 将粗糙想法优化成问题、方法、创新点和实验方案。 |
-| `ccf-idea-reviewer` | 只针对“问题 + 方法”做多专家 CCF-A 评分。 |
-| `ccf-writing-skills` | 负责论文故事线、章节组织、claim-evidence 对齐和 score-lifting。 |
-| `ccf-conference-paper-reviewer` | 模拟审稿人和 AC/meta-review，输出修改队列。 |
-| `ccf-conference-paper-rebuttal` | 组织 author response / rebuttal，并支持 TeX 模板。 |
-| `forge-skills` | 用于创建、校验和维护 Codex skills。 |
-
-### 推荐流程
-
-```text
-raw idea
-  -> ccf-idea-optimizer
-  -> ccf-idea-reviewer
-  -> ccf-idea-optimizer
-  -> ccf-writing-skills
-  -> ccf-conference-paper-reviewer
-  -> ccf-conference-paper-rebuttal
-```
-
-### 安装
-
-```powershell
-git clone https://github.com/mikubaka88/CCFA-Skills.git
-Copy-Item -Recurse .\CCFA-Skills\ccf-* "$HOME\.codex\skills\"
-Copy-Item -Recurse .\CCFA-Skills\forge-skills "$HOME\.codex\skills\"
-```
-
----
-
-## 繁體中文
-
-### 開場故事
-
-很多論文並不是輸在文字不好，而是更早就埋下了風險：問題還不夠銳利，方法只是元件堆疊，創新點沒有和最近工作拉開距離，實驗也沒有真正回答審稿人最關心的問題。
-
-**CCFA Skills** 就是為這個更早的階段設計的。它把 CCF-A 投稿看作一條完整研究流水線：先打磨 idea，再用多專家視角審視問題和方法，然後進入寫作、模擬審稿、修改提分和 rebuttal。每個 skill 都是同一個家族裡的一個角色，讓一個粗糙方向能逐步成長為更有審稿意識的投稿方案。
-
-### 我們的優勢
-
-- **先優化想法，再優化表達**：先解決問題定義、方法機制、貢獻類型和證據鏈，再進入論文潤色。
-- **面向 CCF-A 場景**：針對 NeurIPS、ICML、ICLR、AAAI、ACL、CVPR、ICCV、SIGMOD、KDD、SIGCOMM、CCS、CHI 等會議調整判斷標準。
-- **多專家評分體系**：用領域專家、方法專家、實驗專家、AC/venue 專家、skeptical prior-art 專家共同評估 idea。
-- **閉環提分**：把審稿式質疑轉化為 idea、實驗、寫作和 rebuttal 的具體行動。
-- **漸進式上下文設計**：每個 `SKILL.md` 保持輕量，複雜規則放入 `references/`，需要時再載入。
-
-### Skill 家族
-
-| Skill | 家族角色 |
-| --- | --- |
-| `ccf-idea-optimizer` | 將粗糙想法優化成問題、方法、創新點和實驗方案。 |
-| `ccf-idea-reviewer` | 只針對「問題 + 方法」做多專家 CCF-A 評分。 |
-| `ccf-writing-skills` | 負責論文故事線、章節組織、claim-evidence 對齊和 score-lifting。 |
-| `ccf-conference-paper-reviewer` | 模擬審稿人和 AC/meta-review，輸出修改隊列。 |
-| `ccf-conference-paper-rebuttal` | 組織 author response / rebuttal，並支援 TeX 模板。 |
-| `forge-skills` | 用於建立、校驗和維護 Codex skills。 |
-
-### 推薦流程
-
-```text
-raw idea
-  -> ccf-idea-optimizer
-  -> ccf-idea-reviewer
-  -> ccf-idea-optimizer
-  -> ccf-writing-skills
-  -> ccf-conference-paper-reviewer
-  -> ccf-conference-paper-rebuttal
-```
-
-### 安裝
-
-```powershell
-git clone https://github.com/mikubaka88/CCFA-Skills.git
-Copy-Item -Recurse .\CCFA-Skills\ccf-* "$HOME\.codex\skills\"
-Copy-Item -Recurse .\CCFA-Skills\forge-skills "$HOME\.codex\skills\"
-```
-
----
-
-## Short Introduction
-
-**CCFA Skills** is a research-assistant skill family for Codex. It helps researchers turn rough CCF-A ideas into sharper problems, stronger methods, better experiment plans, reviewer-aware manuscripts, and professional rebuttals.
+**CCFA Skills is a Codex skill family that helps researchers transform rough CCF-A ideas into sharper problems, stronger methods, credible experiments, reviewer-aware manuscripts, and professional rebuttals.**
