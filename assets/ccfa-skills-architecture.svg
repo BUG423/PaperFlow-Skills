@@ -1,0 +1,103 @@
+<svg width="1200" height="620" viewBox="0 0 1200 620" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">CCFA Skills Architecture</title>
+  <desc id="desc">A workflow diagram showing the CCFA Skills family from raw research idea to author response.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="620" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#f8fbff"/>
+      <stop offset="0.5" stop-color="#eef7ff"/>
+      <stop offset="1" stop-color="#f6fff8"/>
+    </linearGradient>
+    <linearGradient id="blue" x1="120" y1="130" x2="320" y2="260" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#0ea5e9"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#16a34a"/>
+      <stop offset="1" stop-color="#22c55e"/>
+    </linearGradient>
+    <linearGradient id="violet" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#7c3aed"/>
+      <stop offset="1" stop-color="#c026d3"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-30%" width="140%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth">
+      <path d="M2 2L10 6L2 10" stroke="#334155" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="620" rx="34" fill="url(#bg)"/>
+  <circle cx="1020" cy="120" r="160" fill="#dbeafe" opacity="0.55"/>
+  <circle cx="150" cy="520" r="190" fill="#dcfce7" opacity="0.5"/>
+
+  <text x="600" y="58" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="34" font-weight="800" fill="#0f172a">CCFA Skills Family</text>
+  <text x="600" y="92" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" fill="#475569">From raw research idea to reviewer-aware CCF-A submission</text>
+
+  <g filter="url(#shadow)">
+    <rect x="64" y="190" width="150" height="96" rx="22" fill="#ffffff"/>
+    <text x="139" y="229" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#0f172a">Raw Idea</text>
+    <text x="139" y="255" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">rough direction</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="270" y="154" width="200" height="168" rx="24" fill="url(#blue)"/>
+    <text x="370" y="197" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">Idea Optimizer</text>
+    <text x="370" y="225" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#dbeafe">problem · method</text>
+    <text x="370" y="246" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#dbeafe">innovation · experiments</text>
+    <rect x="298" y="268" width="144" height="28" rx="14" fill="#ffffff" opacity="0.18"/>
+    <text x="370" y="287" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">ccf-idea-optimizer</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="530" y="154" width="200" height="168" rx="24" fill="url(#violet)"/>
+    <text x="630" y="197" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">Idea Reviewer</text>
+    <text x="630" y="225" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#f3e8ff">multi-expert scoring</text>
+    <text x="630" y="246" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#f3e8ff">fatal risks · pivots</text>
+    <rect x="558" y="268" width="144" height="28" rx="14" fill="#ffffff" opacity="0.18"/>
+    <text x="630" y="287" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">ccf-idea-reviewer</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="790" y="154" width="200" height="168" rx="24" fill="url(#green)"/>
+    <text x="890" y="197" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#ffffff">Paper Builder</text>
+    <text x="890" y="225" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#dcfce7">storyline · sections</text>
+    <text x="890" y="246" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#dcfce7">claim-evidence lift</text>
+    <rect x="818" y="268" width="144" height="28" rx="14" fill="#ffffff" opacity="0.18"/>
+    <text x="890" y="287" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#ffffff">ccf-writing-skills</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="328" y="405" width="220" height="116" rx="24" fill="#ffffff"/>
+    <text x="438" y="446" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0f172a">Paper Reviewer</text>
+    <text x="438" y="473" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">reviewer simulation · AC view</text>
+    <text x="438" y="496" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#2563eb">ccf-conference-paper-reviewer</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="650" y="405" width="220" height="116" rx="24" fill="#ffffff"/>
+    <text x="760" y="446" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="800" fill="#0f172a">Rebuttal Writer</text>
+    <text x="760" y="473" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#64748b">author response · TeX templates</text>
+    <text x="760" y="496" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" font-weight="700" fill="#2563eb">ccf-conference-paper-rebuttal</text>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="960" y="425" width="158" height="78" rx="22" fill="#0f172a"/>
+    <text x="1039" y="459" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="800" fill="#ffffff">Forge Core</text>
+    <text x="1039" y="482" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#cbd5e1">forge-skills</text>
+  </g>
+
+  <path d="M214 238H258" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <path d="M470 238H518" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <path d="M730 238H778" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <path d="M890 322C890 375 820 382 775 402" stroke="#334155" stroke-width="2.4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M548 463H638" stroke="#334155" stroke-width="2.4" marker-end="url(#arrow)"/>
+  <path d="M630 322C610 365 486 358 450 400" stroke="#334155" stroke-width="2.4" fill="none" marker-end="url(#arrow)"/>
+  <path d="M610 154C575 118 420 116 386 148" stroke="#7c3aed" stroke-width="2.4" fill="none" stroke-dasharray="7 7" marker-end="url(#arrow)"/>
+  <text x="498" y="124" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#7c3aed">revise or pivot</text>
+
+  <path d="M960 464C925 372 1005 324 990 238" stroke="#0f172a" stroke-width="2" fill="none" stroke-dasharray="6 8" opacity="0.55"/>
+  <text x="1040" y="383" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="12" fill="#0f172a">create · validate · maintain</text>
+
+  <text x="600" y="580" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" fill="#64748b">A modular Codex skill family for CCF-A research ideation, writing, review, and response.</text>
+</svg>
