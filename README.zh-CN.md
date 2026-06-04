@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### 一个面向 CCF-A 研究的 Codex Skill 家族：从 idea 到 rebuttal 的闭环工作流。
+### 一个面向 CCF-A 研究选题、写作、审稿与回应的 Codex Skill 家族。
 
 <p>
   <a href="README.md">English</a> ·
@@ -22,94 +22,17 @@
 
 ---
 
-## 一个小故事
+## 为什么会有这个项目
 
-很多研究者找 AI 助手时，往往会先给出一句看起来像论文想法的话：
+论文通常以文字的形式进入评审系统，但它的命运往往在更早的阶段就已经被决定。摘要尚未润色之前，一系列更安静的研究决策已经发生：什么问题值得被提出，什么 gap 不是修辞性的，什么机制能让方法不只是熟悉模块的组合，什么证据能够承载主张，以及哪一类审稿人会觉得这项工作是可理解、可信、可讨论的。
 
-> “我想改进 X 方法，解决 Y 任务，然后投 CVPR / NeurIPS / ACL。”
+**CCFA Skills** 试图把这些早期决策显性化。它把 CCF-A 投稿看作一条研究轨迹，而不是单纯的写作任务：idea 被塑形，被评估，被修改，被写成论文，被审稿式压力测试，最后被回应。它的目标不是把薄弱工作说得更强，而是帮助研究者看见真正缺少强度的地方，并把这种诊断转化为下一步行动。
 
-最直接的回答当然是帮他写摘要、润色引言、补实验建议。但这通常已经太晚了。很多论文在动笔之前就已经带着结构性风险：问题定义不够锋利，方法只是熟悉模块的组合，创新点没有和最近工作拉开距离，实验计划也没有真正回答审稿人最关心的问题。
-
-**CCFA Skills** 的设计出发点正是这个更早的阶段：一篇强的 CCF-A 投稿首先不是一份写得漂亮的文本，而是一串研究决策。idea 要被压缩成一个清晰问题；问题要推出方法机制；方法机制要支撑诚实的贡献；贡献要能被实验证据检验；最终论文要降低审稿人的不确定性，而不是只让语言听起来更自信。
-
-这个仓库把这种思路包装成一整个 Codex skill 家族。
-
-## 设计主张
-
-CCFA Skills 的核心判断是：CCF-A 投稿准备应该被看作一个**闭环研究系统**，而不是一组互相独立的 prompt。
-
-顶会审稿通常是多目标判断。审稿人会问：问题是否重要？idea 是否新？方法是否有技术含量？证据是否真的支撑主张？工作是否适合目标会议？作者是否理解局限？所以，一个真正有用的研究助手也应该沿着这些轴线工作，而不是只停留在文字润色层面。
-
-因此，CCFA Skills 把流程拆成几个专业但互相连接的角色：
-
-```text
-粗糙 idea
-  -> idea 优化
-  -> 多专家 idea 评审
-  -> idea 修改或 pivot
-  -> 论文写作
-  -> 模拟审稿
-  -> rebuttal / author response
-```
-
-这套 skill 家族是有明确立场的：它更愿意在早期指出弱 framing，更愿意标记 novelty uncertainty，更重视 claim-evidence 纪律，也更强调 reviewer-facing risk register。它不是为了把每个 idea 都包装成“看似能中”的样子，而是为了发现一个 idea 到底怎样才会真正更接近可投、可审、可信。
-
-## Skill 家族
-
-| Skill | 研究角色 | 主要输出 |
-| --- | --- | --- |
-| `ccf-idea-optimizer` | 把粗糙想法转化为面向 venue 的研究方案。 | 问题定义、方法蓝图、创新点、实验矩阵、风险登记表。 |
-| `ccf-idea-reviewer` | 在论文写作前，只评价问题和方法。 | 多专家评分、fatal risks、置信度、revise / pivot / abandon 建议。 |
-| `ccf-writing-skills` | 将成熟 idea 写成 CCF-A 论文。 | 故事线、章节计划、claim-evidence map、score-lifting action。 |
-| `ccf-conference-paper-reviewer` | 模拟审稿人和 AC/meta-review 压力。 | 校准审稿意见、分数阻塞点、修改队列、预期提分。 |
-| `ccf-conference-paper-rebuttal` | 处理审后沟通。 | 问题表、回应策略、TeX rebuttal 模板、承诺修改项。 |
-| `forge-skills` | 维护和扩展 skill 生态。 | 新 skill 结构、校验规则、reference/resource 组织。 |
-
-## 它为什么有用
-
-### 1. 它从写作之前开始介入
-
-很多时候，最有价值的帮助不是把句子改得更顺，而是发现问题应该重新定义、方法需要机制解释、benchmark claim 太宽、核心实验缺失。`ccf-idea-optimizer` 和 `ccf-idea-reviewer` 专门服务于这个 pre-writing 阶段。
-
-### 2. 它区分 idea 质量和论文质量
-
-漂亮的段落救不了一个弱 idea；但一个好 idea 也可能因为论文没有暴露清楚贡献而被拒。这个家族把两层分开：idea-stage review 关注问题和方法，paper-stage review 关注证据、表达、结构和 venue fit。
-
-### 3. 它引入多专家压力测试
-
-`ccf-idea-reviewer` 会从领域专家、方法专家、实验专家、AC/venue 专家、skeptical prior-art 专家等角度评估 idea。这种设计是为了模拟真实 PC discussion 中不同 reviewer 可能提出的分歧和质疑。
-
-### 4. 它是 venue-aware 的
-
-同一个 idea 不应该用同一种方式投 CVPR、ACL、SIGMOD、CCS、CHI 或 NeurIPS。不同 venue 对问题价值、方法机制、实验包、局限性和责任研究的期待不同。CCFA Skills 内置了 CCF-A venue-family adapter，让 idea 和论文都能面向目标社区调整。
-
-### 5. 它把批评转化成行动队列
-
-这套系统强调 action queue：哪里要重写、哪里要补实验、哪里要弱化 claim、哪里需要新结果、哪里应该承认为 limitation。目标不是泛泛建议，而是能影响下一轮研究决策的具体行动。
-
-## 推荐流程
-
-```text
-1. 使用 ccf-idea-optimizer
-   把粗糙想法标准化为 problem, gap, challenge, insight, method, evidence, limitation。
-
-2. 使用 ccf-idea-reviewer
-   用多专家评分体系评估问题和方法，识别 fatal risks。
-
-3. 回到 ccf-idea-optimizer
-   根据 reviewer action queue 修改、收窄、增强或 pivot。
-
-4. 使用 ccf-writing-skills
-   构建论文故事线、章节结构、claim-evidence map 和 score-lifting plan。
-
-5. 使用 ccf-conference-paper-reviewer
-   模拟审稿人，提前把潜在扣分点转成修改计划。
-
-6. 使用 ccf-conference-paper-rebuttal
-   收到 reviews 后，用冷静、具体、有证据的方式组织回应。
-```
+这套 skill 家族在学术气质上是克制的：它更重视有根据的新颖性，而不是装饰性的新颖性叙述；更重视机制，而不是术语；更重视证据，而不是强调；更重视有边界的 claim，而不是流畅却越界的主张。
 
 ## 安装
+
+请复制完整 skill 目录，而不只是复制 `SKILL.md`。多个 skill 依赖 `references/`、`assets/` 和 agent metadata。
 
 ```powershell
 git clone https://github.com/mikubaka88/CCFA-Skills.git
@@ -117,20 +40,152 @@ Copy-Item -Recurse .\CCFA-Skills\ccf-* "$HOME\.codex\skills\"
 Copy-Item -Recurse .\CCFA-Skills\forge-skills "$HOME\.codex\skills\"
 ```
 
+安装后建议开启一个新的 Codex 会话，以便系统发现新增 skills。
+
+## Skill 索引
+
+| Skill | 阶段 | 用途 | 常见触发方式 |
+| --- | --- | --- | --- |
+| `ccf-idea-optimizer` | 选题成形 | 把粗糙方向整理为问题、方法和证据方案。 | “优化这个 idea”；“帮我把它改成 CVPR/ICLR/ACL 方向” |
+| `ccf-idea-reviewer` | 选题评估 | 用多专家 CCF-A rubric 评价问题和方法。 | “给这些 idea 打分”；“哪个方向更强？” |
+| `ccf-writing-skills` | 论文建构 | 建立故事线、章节、claim-evidence 对齐和提分修改。 | “修改这一节”；“让它更像 CCF-A 论文” |
+| `ccf-conference-paper-reviewer` | 投稿前审查 | 模拟 reviewer 和 AC 压力，并输出修改行动。 | “模拟审稿”；“估计分数”；“审一下这篇论文” |
+| `ccf-conference-paper-rebuttal` | 审后回应 | 组织 author response / rebuttal。 | “回复审稿意见”；“写 rebuttal”；“回应 AC” |
+| `forge-skills` | Skill 工程 | 创建、校验和维护 Codex skills。 | “创建 skill”；“校验 SKILL.md”；“重构这个 skill” |
+
+## 工作流
+
+```text
+raw idea
+  -> ccf-idea-optimizer
+  -> ccf-idea-reviewer
+  -> ccf-idea-optimizer
+  -> ccf-writing-skills
+  -> ccf-conference-paper-reviewer
+  -> ccf-conference-paper-rebuttal
+```
+
+这个 loop 是关键。一个有潜力的 idea 可能在评审后变得更窄、更诚实，也可能需要更换 baseline、收紧 claim，甚至换一个更适合的 venue。一篇看起来完整的 draft 也可能在模拟审稿后暴露出缺失 ablation、证据位置不对、贡献表达不清的问题。这套 skills 的价值在于让这些修改保持连续，而不是每一步都重新变成一个孤立 prompt。
+
+## 共同设计原则
+
+1. **研究先于修辞**：首先判断问题、方法和证据是否构成可辩护的贡献。
+2. **面向 venue 的判断**：CVPR、SIGMOD、CCS、CHI、ACL、NeurIPS 不应被同一种泛化品味评估。
+3. **claim-evidence 纪律**：核心 claim 必须被支撑、收窄、删除，或标记为需要新证据。
+4. **层次分离**：idea 质量、论文质量、审稿风险和 rebuttal 策略相互关联，但不能混为一谈。
+5. **渐进式上下文**：`SKILL.md` 保持紧凑，详细 rubric、checklist 和 venue adapter 放入 `references/`。
+
+## Skill 剖面
+
+### `ccf-idea-optimizer`
+
+**做什么** — 将早期研究方向转化为更严整的 CCF-A idea card：任务、gap、根本挑战、核心 insight、方法机制、贡献类型、实验方案和 reviewer-risk register。
+
+**基础思想** — 结合 proposal 式研究推理、CCF-A venue 适配、Heilmeier 式问题意识，以及一个实际判断：很多论文在润色文本之前，更需要修复概念结构。
+
+**关键规则**
+
+| 维度 | 规则 |
+| --- | --- |
+| 问题 | 命名一个真实瓶颈，而不只是描述性能不足。 |
+| 方法 | 解释机制，不用新术语遮盖熟悉方法。 |
+| 创新 | 选择最强且诚实的贡献类型，而不是声称什么都有。 |
+| 证据 | 设计能检验中心 claim 的实验，而不是单纯增加实验数量。 |
+| 风险 | 在写作前标出 novelty、feasibility、venue fit 和 evidence gaps。 |
+
+### `ccf-idea-reviewer`
+
+**做什么** — 在论文写作之前，只评价问题和方法。它输出多专家评分、置信度、fatal risks、可修复性，以及 develop / revise / pivot / abandon / 先查文献 的建议。
+
+**基础思想** — 融合 reviewer-style evaluation、AC 式 venue fit 判断、skeptical prior-art 检查和多轴 CCF-A scoring。
+
+**关键规则**
+
+| 维度 | 规则 |
+| --- | --- |
+| 范围 | 评估对象仍是 idea 时，不把文字表现作为评分对象。 |
+| 专家视角 | 分离领域、方法、实验、venue 和 prior-art 风险。 |
+| 新颖性 | 区分“新颖性低”和“新颖性未知”。 |
+| 公平性 | 如果深度和证据匹配 venue，不因方向小众而降低判断。 |
+| 决策 | 优先使用 fatal-risk-adjusted judgment，而不是简单平均分。 |
+
+### `ccf-writing-skills`
+
+**做什么** — 把已经相对成熟的 idea 转化为连贯的论文方案或修改方案。它以 section 为单位工作，同时保留全局链条：task -> gap -> challenge -> insight -> method -> evidence -> limitation。
+
+**基础思想** — CCF-A venue adapters、强论文样例分析、claim-evidence audit、score-lifting loop 和 reviewer-facing revision practice。
+
+**关键规则**
+
+| 维度 | 规则 |
+| --- | --- |
+| 故事线 | 让贡献在一次认真阅读后可以被恢复出来。 |
+| 章节 | 让每一节和每一段都有明确修辞角色。 |
+| Claim | 只强化证据能够支撑的内容。 |
+| 证据 | 将决定性证据放入正文，或清楚指向 appendix。 |
+| Readiness | 只有当主要审稿风险被处理或诚实标记后，才称为 ready。 |
+
+### `ccf-conference-paper-reviewer`
+
+**做什么** — 模拟严格但公平的 conference reviewer 和 AC/meta-review。它把弱点转化为具体修改行动，而不是停留在“需要更多实验”的泛泛建议。
+
+**基础思想** — 通用 CS review rubric、venue-specific review styles、score calibration 和 revision-action taxonomy。
+
+**关键规则**
+
+| 维度 | 规则 |
+| --- | --- |
+| 审稿立场 | 保持 program-committee member 的判断距离，而不是过度代入作者立场。 |
+| 证据 | 将扣分点绑定到 claim、baseline、ablation、proof、study 或 reproducibility gap。 |
+| 严重性 | 先处理 fatal risks，再处理局部表达问题。 |
+| 修改 | 把每个 fix 分类为 writing、analysis、citation、figure、new result、limitation 或 venue mismatch。 |
+| 分数 | 只有在有具体修改支撑时，才报告预期分数变化。 |
+
+### `ccf-conference-paper-rebuttal`
+
+**做什么** — 从审稿意见构建 author response。它整理问题、选择回应策略、写出简洁回复，并支持 TeX rebuttal 模板。
+
+**基础思想** — Evidence-grounded rebuttal practice、reviewer-intent analysis、issue table、common-concern grouping 和 response-letter structure。
+
+**关键规则**
+
+| 维度 | 规则 |
+| --- | --- |
+| 语气 | 冷静、具体、感谢、非防御。 |
+| 结构 | 先回答 concern，再解释背景和证据。 |
+| 证据 | 优先使用数据、位置、图表或已完成分析，而不是尚未兑现的承诺。 |
+| 边界 | 不承诺不可获得的实验，也不掩盖有效局限。 |
+| 策略 | 回应深层关切，而不仅是字面句子。 |
+
+### `forge-skills`
+
+**做什么** — 为创建和维护 skills 提供工程纪律：命名、结构、资源布局、校验和触发质量。
+
+**基础思想** — Codex skill authoring conventions 和本地 validation workflow。
+
+**关键规则**
+
+| 维度 | 规则 |
+| --- | --- |
+| 结构 | 保持 `SKILL.md` 紧凑，把详细材料移入 references。 |
+| 命名 | 使用 lowercase hyphen-case，并保持目录名等于 frontmatter name。 |
+| 资源 | 只有当 `references/`、`scripts/` 或 `assets/` 服务于重复工作时才添加。 |
+| 校验 | 运行 validator，并检查 trigger、链接和 placeholder。 |
+
 ## 示例用法
 
 ```text
-Use $ccf-idea-optimizer to improve this rough CVPR idea.
-Use $ccf-idea-reviewer to compare these three NeurIPS project directions.
-Use $ccf-writing-skills to build the storyline for my ICLR submission.
-Use $ccf-conference-paper-reviewer to simulate reviewer scores before submission.
-Use $ccf-conference-paper-rebuttal to draft an author response from these reviews.
+Use $ccf-idea-optimizer to refine this rough CVPR idea into a problem-method-evidence plan.
+Use $ccf-idea-reviewer to rank these three NeurIPS directions and identify fatal risks.
+Use $ccf-writing-skills to rebuild my introduction around the actual contribution.
+Use $ccf-conference-paper-reviewer to simulate CCF-A reviewers before submission.
+Use $ccf-conference-paper-rebuttal to draft a concise author response from these reviews.
 ```
 
-## 它不做什么
+## 范围与学术诚信
 
-CCFA Skills 不承诺必中，不编造实验结果，不伪造 related work，也不会把没有证据支撑的 claim 包装成自信语言。它更克制一点：尽早暴露薄弱环节，帮助研究者判断取舍，并让研究 pipeline 的每一步都更有审稿意识。
+CCFA Skills 不是录用保证，也不能替代真实实验、仔细读文献和领域判断。它更像一个结构化思考工具：帮助研究者暴露薄弱假设、组织证据、校准 claim，并让研究工作的每一步都对目标学术共同体的标准负责。
 
 ## 一句话介绍
 
-**CCFA Skills 是一套面向 Codex 的研究辅助 skill 家族，帮助研究者把粗糙的 CCF-A idea 逐步转化为更锋利的问题、更强的方法、更可信的实验、更有审稿意识的论文和更专业的 rebuttal。**
+**CCFA Skills 是一套面向 Codex 的 skill 家族，帮助研究者从早期 CCF-A idea 出发，逐步形成更清晰的问题、更有机制的方法、更可信的证据、更具审稿意识的论文，以及更克制而有效的 author response。**
