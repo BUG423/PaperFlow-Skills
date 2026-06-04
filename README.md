@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/ccfaskills.png" alt="CCFA Skills overview" width="100%">
-
 # CCFA Skills
 
 ### A research-assistant skill family for CCF-A ideation, manuscript development, review simulation, and author response.
@@ -15,6 +13,10 @@
 </div>
 
 ---
+
+<p align="center">
+  <img src="assets/ccfaskills.png" alt="CCFA Skills overview" width="100%">
+</p>
 
 ## Project Orientation
 
@@ -120,17 +122,92 @@ It keeps the family extensible: new domain skills can be added without turning t
 
 ## Installation
 
-Copy complete skill directories, not only `SKILL.md`. Several modules rely on `references/`, `assets/`, templates, and agent metadata.
+Copy complete skill directories, not only `SKILL.md`. Several modules rely on `references/`, `assets/`, templates, and relative cross-skill references. The installable folders are:
 
-For Codex-style local skill environments:
+```text
+ccf-idea-optimizer
+ccf-idea-reviewer
+ccf-writing-skills
+ccf-conference-paper-reviewer
+ccf-conference-paper-rebuttal
+forge-skills
+```
+
+### 1. Codex
+
+Codex-style local skill environments usually read skills from `~/.codex/skills/`. If you use a custom `$CODEX_HOME`, place the folders under `$CODEX_HOME/skills/` instead.
+
+macOS / Linux:
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+cd CCFA-Skills
+mkdir -p ~/.codex/skills
+cp -R ccf-* forge-skills ~/.codex/skills/
+```
+
+Windows PowerShell:
 
 ```powershell
 git clone https://github.com/mikubaka88/CCFA-Skills.git
-Copy-Item -Recurse .\CCFA-Skills\ccf-* "$HOME\.codex\skills\"
-Copy-Item -Recurse .\CCFA-Skills\forge-skills "$HOME\.codex\skills\"
+Set-Location .\CCFA-Skills
+New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
+Copy-Item -Recurse -Force .\ccf-* "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force .\forge-skills "$HOME\.codex\skills\"
 ```
 
-For other agent frameworks, copy the same folders into the framework's skill or tool-instruction directory and preserve the relative paths.
+Start a new session after copying. A quick smoke test is: `Use ccf-idea-optimizer to refine this rough research idea...`
+
+### 2. Claude Code
+
+Claude Code can load skills from a user-level skills directory or a project-local skills directory. Use the user-level install when you want CCFA Skills available everywhere; use the project-local install when a paper repository should carry its own research workflow.
+
+User-level install:
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+cd CCFA-Skills
+mkdir -p ~/.claude/skills
+cp -R ccf-* forge-skills ~/.claude/skills/
+```
+
+Project-local install:
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+mkdir -p your-paper-repo/.claude/skills
+cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills your-paper-repo/.claude/skills/
+```
+
+Windows PowerShell:
+
+```powershell
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+Set-Location .\CCFA-Skills
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force .\ccf-* "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force .\forge-skills "$HOME\.claude\skills\"
+```
+
+After installation, call a skill by name, for example `/ccf-idea-reviewer`, or ask Claude Code to use the relevant CCFA skill in natural language. If a newly added skill folder is not detected, restart Claude Code.
+
+If you prefer subagent isolation, create Claude Code subagent wrappers that point to these installed skill folders, but keep the `SKILL.md` files and their `references/` directories as the source of truth.
+
+### 3. Other agents or manual use
+
+For other agent frameworks, copy the same folders into the framework's skill, tool, memory, or instruction directory and preserve the relative paths. The agent should treat each `SKILL.md` as the entrypoint for that module.
+
+If the framework has no native skill system, use CCFA Skills manually:
+
+```text
+1. Choose the folder that matches the task.
+2. Read that folder's SKILL.md first.
+3. When SKILL.md mentions references/... or assets/..., resolve the path inside the same folder.
+4. When it mentions ../ccf-writing-skills/... or another sibling skill, keep the repository layout intact.
+5. Load only the referenced files needed for the current task.
+```
+
+To update an installation, run `git pull` in your local clone and copy the skill folders again.
 
 ## Example Requests
 
@@ -145,3 +222,7 @@ Use ccf-conference-paper-rebuttal to draft a concise response from these reviews
 ## Scope
 
 CCFA Skills does not guarantee acceptance, replace experiments, fabricate evidence, or substitute for domain expertise. It is a structured research companion: it helps expose weak assumptions, organize decisions, calibrate claims, and keep the work accountable to the expectations of the target scholarly community.
+
+## Community
+
+For updates, examples, and short research notes, follow Xiaohongshu / RED: `8994074380`.

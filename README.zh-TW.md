@@ -1,7 +1,5 @@
 <div align="center">
 
-<img src="assets/ccfaskills.png" alt="CCFA Skills overview" width="100%">
-
 # CCFA Skills
 
 ### 一個面向 CCF-A 研究選題、論文建構、審稿模擬與作者回應的研究輔助 skill 家族。
@@ -15,6 +13,10 @@
 </div>
 
 ---
+
+<p align="center">
+  <img src="assets/ccfaskills.png" alt="CCFA Skills overview" width="100%">
+</p>
 
 ## 專案定位
 
@@ -120,17 +122,92 @@ raw idea
 
 ## 安裝
 
-請複製完整 skill 目錄，而不只是複製 `SKILL.md`。多個模組依賴 `references/`、`assets/`、模板和 agent metadata。
+請複製完整 skill 目錄，而不只是複製 `SKILL.md`。多個模組依賴 `references/`、`assets/`、模板以及跨 skill 的相對路徑引用。可安裝的目錄包括：
 
-對於 Codex-style 本地 skill 環境：
+```text
+ccf-idea-optimizer
+ccf-idea-reviewer
+ccf-writing-skills
+ccf-conference-paper-reviewer
+ccf-conference-paper-rebuttal
+forge-skills
+```
+
+### 1. Codex
+
+Codex-style 本地 skill 環境通常從 `~/.codex/skills/` 讀取 skills。如果你使用自訂 `$CODEX_HOME`，請把這些目錄放到 `$CODEX_HOME/skills/` 下面。
+
+macOS / Linux：
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+cd CCFA-Skills
+mkdir -p ~/.codex/skills
+cp -R ccf-* forge-skills ~/.codex/skills/
+```
+
+Windows PowerShell：
 
 ```powershell
 git clone https://github.com/mikubaka88/CCFA-Skills.git
-Copy-Item -Recurse .\CCFA-Skills\ccf-* "$HOME\.codex\skills\"
-Copy-Item -Recurse .\CCFA-Skills\forge-skills "$HOME\.codex\skills\"
+Set-Location .\CCFA-Skills
+New-Item -ItemType Directory -Force "$HOME\.codex\skills" | Out-Null
+Copy-Item -Recurse -Force .\ccf-* "$HOME\.codex\skills\"
+Copy-Item -Recurse -Force .\forge-skills "$HOME\.codex\skills\"
 ```
 
-對於其他 agent 框架，請將同樣的目錄複製到該框架的 skill 或工具說明目錄，並保持相對路徑不變。
+複製完成後建議重新開啟一個會話。可以用這句話快速測試：`Use ccf-idea-optimizer to refine this rough research idea...`
+
+### 2. Claude Code
+
+Claude Code 可以從使用者級 skills 目錄或專案級 skills 目錄載入 skills。希望所有專案都能使用時，推薦使用者級安裝；如果某個論文專案希望自帶固定研究流程，則使用專案級安裝。
+
+使用者級安裝：
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+cd CCFA-Skills
+mkdir -p ~/.claude/skills
+cp -R ccf-* forge-skills ~/.claude/skills/
+```
+
+專案級安裝：
+
+```bash
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+mkdir -p your-paper-repo/.claude/skills
+cp -R CCFA-Skills/ccf-* CCFA-Skills/forge-skills your-paper-repo/.claude/skills/
+```
+
+Windows PowerShell：
+
+```powershell
+git clone https://github.com/mikubaka88/CCFA-Skills.git
+Set-Location .\CCFA-Skills
+New-Item -ItemType Directory -Force "$HOME\.claude\skills" | Out-Null
+Copy-Item -Recurse -Force .\ccf-* "$HOME\.claude\skills\"
+Copy-Item -Recurse -Force .\forge-skills "$HOME\.claude\skills\"
+```
+
+安裝後可以直接按名稱呼叫，例如 `/ccf-idea-reviewer`，也可以用自然語言要求 Claude Code 使用對應的 CCFA skill。如果新加入的 skill 目錄沒有被識別，重啟 Claude Code 即可。
+
+如果你希望使用更強的 subagent 隔離，也可以建立 Claude Code subagent wrapper 指向這些已安裝 skill 目錄，但 `SKILL.md` 和對應的 `references/` 應保持為唯一的知識源。
+
+### 3. Other agents or manual use
+
+對於其他 agent 框架，請將同樣的目錄複製到該框架的 skill、tool、memory 或 instruction 目錄，並保持相對路徑不變。每個模組都應以對應目錄下的 `SKILL.md` 作為入口文件。
+
+如果框架沒有原生 skill 系統，也可以手動使用：
+
+```text
+1. 根據任務選擇對應目錄。
+2. 先閱讀該目錄下的 SKILL.md。
+3. 當 SKILL.md 提到 references/... 或 assets/... 時，在同一個 skill 目錄內解析路徑。
+4. 當它提到 ../ccf-writing-skills/... 或其他同級 skill 時，保持倉庫原有目錄結構。
+5. 只載入當前任務真正需要的引用文件。
+```
+
+後續更新時，在本地 clone 目錄中執行 `git pull`，然後重新複製這些 skill 目錄即可。
 
 ## 範例請求
 
@@ -145,3 +222,7 @@ Use ccf-conference-paper-rebuttal to draft a concise response from these reviews
 ## 邊界
 
 CCFA Skills 不保證錄用，不替代真實實驗，不偽造證據，也不能代替領域專家判斷。它更像一個結構化研究伴侶：幫助研究者暴露薄弱假設，組織決策，校準主張，並讓工作持續對目標學術共同體的標準負責。
+
+## 交流
+
+更多更新、範例和研究札記會整理到小紅書號：`8994074380`。
