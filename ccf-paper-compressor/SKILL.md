@@ -37,7 +37,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 5. Appendix/delete candidates are separated from mandatory main-text content.
 6. One user decision is requested for appendix-vs-delete when that choice affects content ownership or paper strategy.
 7. The compressed version keeps terminology stable and does not create unsupported stronger claims.
-8. Any optional handoff to `ccf-writing-skills`, `ccf-conference-paper-reviewer`, or `ccf-experiment-designer` follows CCFA handoff mode.
+8. Any optional handoff to `ccf-writing-skills`, `ccf-conference-reviewer`, `ccf-conference-writing-reviewer`, or `ccf-experiment-designer` follows CCFA handoff mode.
 
 ## Workflow
 
@@ -59,7 +59,7 @@ Risk if removed:
 5. Ask once before moving material to appendix or deleting nontrivial content when the user's preference is unknown. Recommended default: move reproducibility detail, extra derivations, extended tables, and secondary analyses to appendix; delete repeated motivation, generic claims, and unsupported filler.
 6. Rewrite at the requested granularity. Preserve facts and numbers exactly. If a claim becomes unsupported after compression, either keep the support, weaken the claim, or flag the risk.
 7. Produce a before/after compression report with word or page estimates when possible.
-8. If compression reveals a structural writing issue, follow CCFA handoff mode before using `ccf-writing-skills`. If it reveals missing evidence or experiment overload, follow CCFA handoff mode before using `ccf-experiment-designer` or `ccf-conference-paper-reviewer`.
+8. If compression reveals a structural writing issue, follow CCFA handoff mode before using `ccf-writing-skills` or `ccf-conference-writing-reviewer`. If it reveals missing evidence or experiment overload, follow CCFA handoff mode before using `ccf-experiment-designer` or `ccf-conference-reviewer`.
 
 ## Output Contracts
 

@@ -2,7 +2,7 @@
 
 Use this file to convert writing-review deductions into concrete improvements. The goal is a closed loop: diagnose, revise, and confirm that the same reviewer confusion would not remain.
 
-Before producing a revision plan, load `references/review-checklists.md` and apply its writing-revision checks. Use scientific re-score checks only when the user explicitly asks for acceptance-style scoring.
+Before producing a revision plan, load `references/review-checklists.md` and apply its writing-revision checks. If the user asks for scientific re-score, acceptance-style scoring, simulated reviewers, or AC/meta-review, route to `ccf-conference-reviewer` under the CCFA handoff mode.
 
 ## Action Classes
 

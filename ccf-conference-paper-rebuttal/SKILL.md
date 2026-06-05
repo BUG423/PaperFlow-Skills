@@ -60,7 +60,7 @@ Load `references/response-checklists.md` for full response letters, multiple rev
 5. Keep each response concise: acknowledge, quote the core concern, answer directly, cite evidence, address the deeper intent, state exact changes or limitations, and close with shared ground.
 6. For full rebuttals, default to a TeX file with three sections: `General Response`, `Common Concerns`, and `Reviewer-Specific Clarifications`. Load `references/tex-templates.md` and use `assets/templates/default-general-common-reviewer.tex` unless the user requests another template.
 7. Load `references/response-checklists.md` before finalizing to audit tone, evidence, promises, reviewer colors, quote-answer structure, and word budget.
-8. If manuscript rewriting, related-work grounding, experiment planning, or review-risk diagnosis is needed after the response plan, follow the CCFA handoff mode before using `ccf-writing-skills`, `ccf-literature-search`, `ccf-experiment-designer`, or `ccf-conference-paper-reviewer`. If a handoff is denied or disabled, output the revision action queue only and avoid review-impact claims.
+8. If manuscript rewriting, related-work grounding, experiment planning, scientific review-risk diagnosis, or writing-only review is needed after the response plan, follow the CCFA handoff mode before using `ccf-writing-skills`, `ccf-literature-search`, `ccf-experiment-designer`, `ccf-conference-reviewer`, or `ccf-conference-writing-reviewer`. If a handoff is denied or disabled, output the revision action queue only and avoid review-impact claims.
 
 ## Output Contracts
 

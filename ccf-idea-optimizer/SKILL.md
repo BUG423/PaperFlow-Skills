@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-optimizer
-description: "Optimize and concretize early research idea drafts into CCF A-class conference problem, method, innovation, and evidence plans. Use when the user asks to improve, reshape, compare, develop, broaden, or make concrete fuzzy ideas, vague directions, problem statements, methods, novelty claims, contribution framing, or acceptance-oriented experiment plans for NeurIPS, ICML, ICLR, AAAI, ACL, CVPR, ICCV, SIGMOD, KDD, SIGCOMM, CCS, CHI, or similar CCF-A venues; 中文触发: 优化idea, 具象化idea, 模糊idea, 选题优化, 前沿idea, 优雅方法, 研究思路."
+description: "Optimize and concretize early research idea drafts into CCF A-class conference problem, method, innovation, and evidence plans. Use when the user asks to improve, reshape, develop, broaden, or make concrete fuzzy ideas, vague directions, problem statements, methods, novelty claims, contribution framing, or acceptance-oriented experiment plans for NeurIPS, ICML, ICLR, AAAI, ACL, CVPR, ICCV, SIGMOD, KDD, SIGCOMM, CCS, CHI, or similar CCF-A venues; 中文触发: 优化idea, 具象化idea, 模糊idea, 选题优化, 前沿idea, 优雅方法, 研究思路. Do not use for scoring, ranking, selecting, or strict comparative review of multiple ideas; route those to ccf-idea-reviewer."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -103,4 +103,4 @@ Load only what is needed:
 - `references/research-taste.md`: Use when the user asks what makes research good, elegant, timely, or likely to survive top-conference review.
 - `references/source-notes.md`: Use when provenance, source basis, or current-policy checks matter.
 
-If the user's request is only to score an idea without optimizing it, follow the CCFA handoff mode before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user's request is mainly to search related literature, route to `ccf-literature-search`. If the user already has a manuscript draft, follow the CCFA handoff mode before switching to `ccf-writing-skills` or `ccf-conference-paper-reviewer`; if not confirmed, provide only a brief scope note.
+If the user's request is only to score an idea without optimizing it, follow the CCFA handoff mode before switching to `ccf-idea-reviewer` unless the user explicitly named it. If the user's request is mainly to search related literature, route to `ccf-literature-search`. If the user already has a manuscript draft, follow the CCFA handoff mode before switching to `ccf-writing-skills`, `ccf-conference-reviewer`, or `ccf-conference-writing-reviewer`; if not confirmed, provide only a brief scope note.

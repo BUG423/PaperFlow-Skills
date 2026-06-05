@@ -28,7 +28,7 @@ Use these routes when they match the user's goal:
 - `Idea selection`: `ccf-idea-reviewer` -> optional `ccf-literature-search` -> optional `ccf-idea-optimizer`.
 - `Novelty grounding`: `ccf-literature-search` -> `ccf-idea-optimizer` or `ccf-writing-skills`.
 - `Experiment story`: `ccf-experiment-designer` -> `ccf-writing-skills`.
-- `Manuscript improvement`: `ccf-writing-skills` -> `ccf-conference-paper-reviewer` -> `ccf-writing-skills` or `ccf-paper-compressor`.
+- `Manuscript improvement`: `ccf-writing-skills` -> `ccf-conference-reviewer` -> `ccf-conference-writing-reviewer` or `ccf-writing-skills` or `ccf-paper-compressor`.
 - `Page limit`: `ccf-paper-compressor` -> optional `ccf-writing-skills`.
 - `Post-review response`: `ccf-conference-paper-rebuttal` -> optional writing or experiment handoff.
 

@@ -112,7 +112,7 @@ Scan for:
 
 ## Score-Lifting Checklist
 
-Use with `score-lifting-loop.md` and, only when explicitly requested or allowed by the CCFA handoff mode, `ccf-conference-paper-reviewer`. Use `ccf-literature-search`, `ccf-experiment-designer`, or `ccf-paper-compressor` through the same handoff rule when the blocker is missing prior art, evidence design, or page-limit pressure.
+Use with `score-lifting-loop.md` and, only when explicitly requested or allowed by the CCFA handoff mode, `ccf-conference-reviewer` for full scientific review or `ccf-conference-writing-reviewer` for writing-only review. Use `ccf-literature-search`, `ccf-experiment-designer`, or `ccf-paper-compressor` through the same handoff rule when the blocker is missing prior art, evidence design, or page-limit pressure.
 
 - Current likely score or stance is stated.
 - Target score or readiness threshold is stated.

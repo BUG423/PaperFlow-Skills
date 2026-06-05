@@ -67,10 +67,12 @@ Use these labels instead of guessing:
 
 ## Multi-Idea Intake
 
-For several drafts, normalize all ideas first, then compare. Do not optimize the first idea prematurely. Rank by:
+For several drafts, normalize all ideas first, then compare optimization routes. Do not optimize the first idea prematurely. Prioritize optimizer attention by:
 
 1. Strongest problem-method fit.
 2. Most defensible novelty after likely prior art.
 3. Best evidence feasibility.
 4. Best CCF-A venue fit.
 5. Lowest fatal-risk count after one realistic iteration.
+
+Do not produce numeric scores, investment recommendations, winner labels, or strict rankings here. If the user explicitly asks to score, rank, select, or strictly review ideas, route to `ccf-idea-reviewer`.

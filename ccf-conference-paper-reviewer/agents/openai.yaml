@@ -1,4 +1,0 @@
-interface:
-  display_name: "CCF Paper Writing Reviewer"
-  short_description: "Review CCF-A manuscripts paragraph by paragraph for writing logic, LaTeX/format, consistency, and reviewer readability."
-  default_prompt: "Use $ccf-conference-paper-reviewer as a writing reviewer for my CCF-A manuscript: 逐段审稿, LaTeX/format audit, claim-evidence alignment, storyline logic, terminology consistency, figure/table narration, and concrete revision actions. Anchor every issue to a paragraph, section, line, TeX command, figure/table, or claim. Follow CCFA handoff_question_mode before rewriting, compression, literature search, experiment design, or rebuttal. Do not invent results, citations, reviewer consensus, score changes, or acceptance probability."

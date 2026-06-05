@@ -1,6 +1,6 @@
 ---
 name: ccf-idea-reviewer
-description: "Strictly score, rank, and triage early research ideas with CCF-A/target-venue rubrics, active literature search, closest-prior-art comparison, and harsh but professional reviewer comments. Use when the user asks to rate, rank, compare, select, judge acceptance potential, stress-test, or diagnose insight, novelty, innovation, method soundness, feasibility, venue fit, or fatal risks for rough research idea drafts before manuscript writing; 中文触发: idea评分, 选题评分, 选题排名, idea评审, 模拟专家评审, 严格锐评, 联网查文献, 判断创新性, insight评审, 选题是否值得做."
+description: "Strictly score, rank, and triage early research ideas with CCF-A/target-venue rubrics, active literature search, closest-prior-art comparison, and harsh but professional reviewer comments. Use only when the user explicitly asks to score, rank, compare, select, judge acceptance potential, stress-test, or strictly review rough research ideas before manuscript writing; 中文触发: idea评分, 选题评分, 选题排名, idea评审, 模拟专家评审, 严格锐评idea, 判断创新性, insight评审, 选题是否值得做. Do not use for generic idea optimization, 模糊idea具象化, 研究思路优化, manuscript review, writing review, or full paper review."
 metadata:
   ccf_skill_controls:
     handoff_question_mode: partial
@@ -14,7 +14,9 @@ metadata:
 
 ## Invocation Controls
 
-**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep idea scoring separate from idea optimization, manuscript writing, paper writing review, and rebuttal tasks.
+**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep idea scoring separate from idea optimization, manuscript writing, conference scientific review, paper writing review, and rebuttal tasks.
+
+Use this skill only for explicit idea review/scoring/ranking. If the user asks to optimize, develop, concretize, brainstorm, or reshape an idea without asking for scoring or strict review, route to `ccf-idea-optimizer` or `ccf-brainstorming` by the shared routing rules.
 
 Load `../ccf-common/references/task-modes.md` before deciding quick or standard mode. Use quick mode for a short local triage note or one idea's preliminary risk scan. Use standard mode for numeric scoring, multi-idea ranking, novelty-risk diagnosis, target-venue/journal judgment, or investment decisions.
 
@@ -120,4 +122,4 @@ Load only what is needed:
 - `references/calibration.md`: Use for weighted scores, fatal gates, confidence, recommendations, and multi-idea tournaments.
 - `references/source-notes.md`: Use when explaining provenance, official criteria, or current literature/venue checks.
 
-If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-search`. If the user provides a full paper draft and asks for writing/format review, follow the CCFA handoff mode before switching to `ccf-conference-paper-reviewer`; if not confirmed, provide only idea-stage caveats.
+If the user asks to improve the idea rather than score it, follow the CCFA handoff mode before switching to `ccf-idea-optimizer` unless explicitly named. If the user asks mainly for current related work, route to `ccf-literature-search`. If the user provides a full paper draft and asks for scientific paper review, follow the CCFA handoff mode before switching to `ccf-conference-reviewer`. If the user asks for writing/format review, follow the CCFA handoff mode before switching to `ccf-conference-writing-reviewer`; if not confirmed, provide only idea-stage caveats.

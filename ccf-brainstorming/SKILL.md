@@ -54,7 +54,7 @@ Load `references/intake-protocol.md` for goal and material intake. Load `referen
 4. If the request spans multiple independent stages, decompose it into an ordered CCFA workflow and identify the first decision point.
 5. Load `references/approach-options.md` and present 2-3 approaches only when there is a real tradeoff. Give a recommended approach first.
 6. Load `references/design-brief-template.md` and produce a decision brief. If the user requested quick mode, produce a compact route note instead.
-7. Follow CCFA handoff mode before transitioning to `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-search`, `ccf-experiment-designer`, `ccf-writing-skills`, `ccf-paper-compressor`, `ccf-conference-paper-reviewer`, or `ccf-conference-paper-rebuttal`.
+7. Follow CCFA handoff mode before transitioning to `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-literature-search`, `ccf-experiment-designer`, `ccf-writing-skills`, `ccf-paper-compressor`, `ccf-conference-reviewer`, `ccf-conference-writing-reviewer`, or `ccf-conference-paper-rebuttal`.
 
 ## Output Contracts
 

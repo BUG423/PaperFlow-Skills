@@ -39,7 +39,7 @@ In standard mode, complete this checklist before final output. In quick mode, ru
 7. Paper type is one of `pure benchmark`, `pure method`, `method + benchmark`, `survey`, `system/tool`, `theory/proof`, or `other`.
 8. Every claim about a paper is traceable to the linked source or marked as inferred.
 9. A literature-search folder is written when file access is available.
-10. Optional handoff to `ccf-writing-skills`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, or `ccf-conference-paper-reviewer` follows CCFA handoff mode.
+10. Optional handoff to `ccf-writing-skills`, `ccf-idea-optimizer`, `ccf-idea-reviewer`, `ccf-experiment-designer`, `ccf-conference-reviewer`, or `ccf-conference-writing-reviewer` follows CCFA handoff mode.
 
 ## Workflow
 

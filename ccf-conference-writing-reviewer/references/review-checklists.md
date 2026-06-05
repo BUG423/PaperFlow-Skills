@@ -1,6 +1,6 @@
 # Writing Review Checklists
 
-Use this file to prevent omissions during manuscript writing review, paragraph-by-paragraph review, LaTeX/format audit, revision planning, and optional scientific-score add-ons.
+Use this file to prevent omissions during manuscript writing review, paragraph-by-paragraph writing review, LaTeX/format audit, and writing revision planning.
 
 ## Intake Checklist
 
@@ -70,15 +70,9 @@ Checklist status:
 - Claims to weaken, move, support, or remove are listed.
 - Risk-reduction condition is tied to reviewer confusion or format compliance.
 
-## Optional Scientific-Score Add-On
+## Scientific Review Redirect
 
-Use only when the user explicitly asks for paper scoring, simulated reviewers, AC/meta-review, or acceptance-style risk. Keep it secondary to the writing review unless the user requests otherwise.
-
-- Universal scientific dimensions are scored from `universal-review-rubric.md`.
-- Venue-specific expectations are applied from `venue-review-styles.md`.
-- Fatal scientific risks are separated from writing/format risks.
-- Numeric scores use `score-calibration.md`.
-- Score changes are conditional and tied to concrete revisions or evidence.
+If the user explicitly asks for paper scoring, simulated reviewers, AC/meta-review, full scientific review, novelty/soundness/evidence review, or acceptance-style risk, stop the writing checklist and route to `ccf-conference-reviewer` under the CCFA handoff mode.
 
 ## Minimal Checklist Status
 

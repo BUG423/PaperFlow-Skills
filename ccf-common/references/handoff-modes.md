@@ -42,7 +42,8 @@ Use `task-modes.md` for quick/standard execution mode. This file controls siblin
 | Idea optimization/review -> literature search for current prior art | Ask unless user requested search/latest/current | Ask unless explicitly requested | Auto, using public queries |
 | Literature search -> writing, idea optimization, experiment design, or review | Ask unless user requested the combined workflow | Ask | Auto |
 | Experiment design -> literature search for datasets/baselines | Ask unless user requested search | Ask | Auto, using public queries |
-| Idea/writing -> full paper review | Ask | Ask | Auto |
+| Idea/writing -> full scientific paper review (`ccf-conference-reviewer`) | Ask | Ask | Auto |
+| Full scientific review -> writing-only paragraph/LaTeX review (`ccf-conference-writing-reviewer`) | Ask | Ask | Auto |
 | Review diagnosis -> manuscript rewrite/compression/experiment design | Ask | Ask | Auto, but preserve idea scope and do not invent results |
 | Any module -> rebuttal | Only if the user explicitly asked for rebuttal/author response/审稿意见回复 | Only if explicitly requested | Only if explicitly requested |
 | Rebuttal -> manuscript rewrite or review-impact analysis | Ask | Ask | Auto, but do not invent results |
