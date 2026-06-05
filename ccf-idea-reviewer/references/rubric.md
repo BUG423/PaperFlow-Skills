@@ -2,6 +2,8 @@
 
 Use 1-5 scores for each dimension. Score only the problem and method idea, not manuscript prose.
 
+When novelty, insight, or acceptance potential is decision-critical, apply `strict-idea-review.md` first. If closest work was not searched, cap novelty at 3 and mark confidence low unless the user supplies credible prior-art coverage.
+
 ## Weighted Dimensions
 
 | Dimension | Weight |
@@ -23,33 +25,45 @@ Weights sum to 100. Adjust only when an official venue review form makes a dimen
 
 ### 5
 
-Clear CCF-A-level signal. The problem is important, the method has a defensible mechanism, novelty looks strong or worth checking, and the evidence package is credible.
+Clear CCF-A-level signal. The problem is important, the insight is non-obvious, the method has a defensible mechanism, closest-work comparison leaves a meaningful novelty delta, and the evidence package can decisively test the claim.
 
 ### 4
 
-Promising. The idea has a real contribution and fixable gaps, but needs sharper novelty grounding, method detail, or evidence design.
+Promising. The idea has a real contribution and mostly coherent mechanism, but one material gap remains in novelty grounding, method detail, feasibility, or evidence design. The gap is repairable without changing the central idea.
 
 ### 3
 
-Borderline. The idea may become publishable with substantial refinement, but the current problem-method chain leaves important doubts.
+Borderline. The idea may become publishable only after substantial refinement. The current problem-method chain leaves important doubts, the novelty delta is thin or unsearched, or the insight is more incremental than the framing suggests.
 
 ### 2
 
-Weak. The idea is incremental, under-motivated, poorly grounded, or difficult to validate. It may require a pivot.
+Weak. The idea is likely incremental, under-motivated, poorly grounded, internally inconsistent, or difficult to validate. A strict reviewer would probably reject unless the problem, mechanism, or differentiation is changed.
 
 ### 1
 
-Fatal at idea stage. The problem is not important for the venue, novelty likely collapses, the method is unsound, or the central claim is untestable.
+Fatal at idea stage. The problem is not important for the venue, closest work likely already covers the contribution, the method is unsound, the components conflict, or the central claim is untestable.
 
 ## Dimension Guidance
 
-- Problem importance: audience, stakes, bottleneck, and nontriviality.
-- Novelty: distance from close work; mark uncertainty separately from low novelty.
-- Conceptual innovation: new insight, formulation, mechanism, benchmark, theory, or system design.
-- Method soundness: assumptions, mechanism, feasibility, and plausible correctness.
+- Problem importance: audience, stakes, bottleneck, and nontriviality. Penalize vague "important application" claims without a named bottleneck.
+- Novelty: distance from closest work; mark uncertainty separately from low novelty. Do not score above 3 when closest work was not checked and novelty is central.
+- Conceptual innovation: new insight, formulation, mechanism, benchmark, theory, or system design. Penalize pure module recombination unless the combination creates a new capability or explanation.
+- Method soundness: assumptions, mechanism, feasibility, and plausible correctness. Penalize architectures whose components optimize incompatible objectives.
 - Elegance: simplicity, necessity of components, and explanatory power.
 - Feasibility: data, compute, implementation, timeline, and expertise.
-- Experimental convincibility: ability to produce evidence that would change reviewer belief.
+- Experimental convincibility: ability to produce evidence that would change reviewer belief. "Run more experiments" is not enough; identify decisive baselines, ablations, datasets, proofs, systems measurements, or user studies.
 - Venue fit: match to target community, track, and contribution taste.
 - Timeliness: why now, relation to active questions, and risk of saturation.
 - Acceptance potential: score after considering fatal risks and likely reviewer disagreement.
+
+## Deduction Format
+
+For every score <= 3, include:
+
+```text
+Dimension:
+Deduction:
+Anchor: closest work / missing mechanism / missing evidence / venue criterion / internal contradiction
+Why it matters:
+Repair condition:
+```

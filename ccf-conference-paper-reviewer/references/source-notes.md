@@ -1,6 +1,6 @@
 # Source Notes
 
-Use this file when explaining review-method provenance or checking current official venue rules.
+Use this file when explaining writing-review provenance or checking current official venue rules.
 
 ## Shared Registry
 
@@ -16,10 +16,11 @@ Do not duplicate long URL lists in this skill. Add or update public source recor
 python ..\ccf-common\scripts\check_sources.py
 ```
 
-## Review-Skill Use Rules
+## Writing-Reviewer Use Rules
 
-- Use official venue criteria for review dimensions and wording when current-year policy matters.
+- Use official venue criteria for template, anonymity, page limit, artifact, ethics, and formatting rules when current-year policy matters.
 - Verify official pages again when the user asks for latest-year requirements, review forms, page limits, anonymity, artifacts, ethics, or deadlines.
-- Use CS paper-reading and reviewing sources as method scaffolds, not as venue-specific scoring rules.
+- Use CS paper-reading, peer-review, and author-guideline sources as method scaffolds, not as venue-specific scoring rules.
 - Use CSPaper-style calibration only as a conceptual model for consistent diagnostic signals; do not claim exact percentiles or acceptance probability without a real calibration dataset.
-- Convert every deduction into a revision action so the review can feed a writing skill when allowed by the CCFA handoff mode.
+- Convert every writing deduction into a location-specific revision action so the review can feed `ccf-writing-skills` or `ccf-paper-compressor` when allowed by the CCFA handoff mode.
+- For LaTeX/format issues, prefer the target venue's official template first; use ACM/IEEE author resources only when they match the user's venue family or provide general source-audit scaffolding.

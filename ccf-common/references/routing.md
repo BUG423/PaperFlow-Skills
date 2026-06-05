@@ -12,7 +12,7 @@ Use this file to prevent trigger overlap across the CCFA Skills family. Route by
 | Design experiments, datasets, benchmarks, baselines, ablations, or result-fill tables | `ccf-experiment-designer` | Do not fabricate results. Use placeholders unless the user supplies numbers. |
 | Draft, revise, polish, or restructure paper text | `ccf-writing-skills` | Preserve idea scope unless explicitly authorized. |
 | Compress a paper, section, introduction, related work, method, or experiment text to a target length | `ccf-paper-compressor` | Preserve claims, evidence, results, and limitations; ask once before appendix/delete if policy is unknown. |
-| Review a full manuscript, simulate reviewers/AC, calibrate scores, or produce revision actions | `ccf-conference-paper-reviewer` | Do not perform manuscript rewrites unless writing/compression is explicitly requested or allowed by the handoff mode. |
+| Review manuscript writing, read paragraph by paragraph, audit LaTeX/format, diagnose story logic, consistency, contribution presentation, or reviewer-facing clarity risks | `ccf-conference-paper-reviewer` | Backwards-compatible name; active role is paper writing reviewer. Do not perform manuscript rewrites unless writing/compression is explicitly requested or allowed by the handoff mode. |
 | Draft rebuttal, author response, response letter, revision summary, or TeX response after real reviews | `ccf-conference-paper-rebuttal` | Isolated post-review module. Use only when the user explicitly asks for rebuttal/author response/审稿意见回复/response letter, or explicitly names the skill. |
 | Create, update, validate, or audit CCFA skills and shared controls | `forge-skills` | Use `ccf-common` as shared policy, not as a replacement for `forge-skills`. |
 | Shared routing, task modes, handoff, privacy, source, or provenance policy | `ccf-common` | Not an ordinary user-facing research task skill. |
@@ -27,7 +27,7 @@ ccf-idea-optimizer
   -> ccf-literature-search
   -> ccf-experiment-designer
   -> ccf-writing-skills
-  -> ccf-conference-paper-reviewer
+  -> ccf-conference-paper-reviewer (paper writing review)
   -> ccf-writing-skills / ccf-experiment-designer / ccf-paper-compressor as needed
 ```
 
@@ -42,9 +42,10 @@ ccf-idea-optimizer
 5. If the request asks to design experiments, choose datasets, benchmark baselines, plan ablations, create result tables, or align experiments to claims, route to `ccf-experiment-designer`.
 6. If the request asks to write, polish, rewrite, plan sections, align claims to evidence, or improve presentation, route to `ccf-writing-skills`.
 7. If the request asks to shorten, compress, reduce words/pages, move to appendix, or fit a page limit, route to `ccf-paper-compressor`.
-8. If the request asks to review a paper, simulate reviewers, produce AC/meta-review, judge venue fit, or produce revision actions, route to `ccf-conference-paper-reviewer`.
-9. If the request includes real reviewer comments and asks for a response, rebuttal, response letter, revision summary, or resubmission response, route to `ccf-conference-paper-rebuttal`.
-10. If the request is about creating or maintaining skills, route to `forge-skills`; load `ccf-common` only for CCFA family controls.
+8. If the request asks to review manuscript writing, read a paper/section paragraph by paragraph, check LaTeX or format, diagnose paper logic, consistency, contribution presentation, or writing-related reviewer risk, route to `ccf-conference-paper-reviewer`.
+9. If the request asks for scientific novelty of a rough idea, route to `ccf-idea-reviewer`; if it asks for related work or closest prior art, route to `ccf-literature-search`; if it asks whether experiments support claims, route to `ccf-experiment-designer`.
+10. If the request includes real reviewer comments and asks for a response, rebuttal, response letter, revision summary, or resubmission response, route to `ccf-conference-paper-rebuttal`.
+11. If the request is about creating or maintaining skills, route to `forge-skills`; load `ccf-common` only for CCFA family controls.
 
 ## Ambiguous Requests
 
@@ -53,7 +54,8 @@ ccf-idea-optimizer
 - "Polish this introduction and reduce rejection risk": route to `ccf-writing-skills`; use quick mode for one paragraph and standard mode for a full introduction.
 - "Compress this introduction to half length": route to `ccf-paper-compressor`, not the general writing skill.
 - "Design experiments for this draft": route to `ccf-experiment-designer`; follow handoff mode before literature search if datasets/baselines are unknown.
-- "Review this paper and rewrite the introduction": route to `ccf-conference-paper-reviewer` for diagnosis first, then follow handoff mode before writing.
+- "Review this paper and rewrite the introduction": route to `ccf-conference-paper-reviewer` for writing diagnosis first, then follow handoff mode before writing.
+- "Simulate scientific reviewers and score acceptance risk": route to `ccf-conference-paper-reviewer` only if the user also wants full-manuscript writing review; otherwise use the owning skill for the specific issue: `ccf-idea-reviewer` for idea novelty, `ccf-experiment-designer` for evidence design, or `ccf-literature-search` for prior art.
 - "Respond to reviews and revise the paper": route to `ccf-conference-paper-rebuttal` only because response is explicit; then follow handoff mode before manuscript writing.
 
 ## Smoke Prompts
@@ -70,7 +72,8 @@ Use these for routing audits:
 润色 introduction 并降低 reviewer 风险 -> ccf-writing-skills
 quick polish this paragraph -> ccf-writing-skills quick mode
 压缩 related work 到 800 字 -> ccf-paper-compressor
-模拟审稿并给 revision actions -> ccf-conference-paper-reviewer
+逐段审稿 / LaTeX格式检查 / 全文一致性评审 -> ccf-conference-paper-reviewer
+写作角度模拟审稿并给 revision actions -> ccf-conference-paper-reviewer
 根据 R1/R2 写 rebuttal / 审稿意见回复 -> ccf-conference-paper-rebuttal
 维护 CCFA skill -> forge-skills
 ```

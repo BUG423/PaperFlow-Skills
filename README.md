@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### A research-assistant skill family for CCF-A ideation, literature grounding, experiment design, manuscript development, review simulation, and author response.
+### A research-assistant skill family for CCF-A ideation, literature grounding, experiment design, manuscript development, strict writing review, and author response.
 
 <p>
   <strong>English</strong> ·
@@ -20,7 +20,7 @@
 
 ## Project Orientation
 
-CCFA Skills is a family of agent-readable research skills for CCF-A-oriented academic work. It is designed for the part of research that sits between an informal idea and a defensible submission: clarifying the problem, articulating a method, searching and scoring related work, grounding novelty, designing evidence, writing and compressing the manuscript, anticipating review, and responding after review.
+CCFA Skills is a family of agent-readable research skills for CCF-A-oriented academic work. It is designed for the part of research that sits between an informal idea and a defensible submission: clarifying the problem, articulating a method, searching and scoring related work, grounding novelty, designing evidence, writing and compressing the manuscript, running strict writing/format review, and responding after review.
 
 The repository is not meant to be tied to a single model or interface. The files follow a `SKILL.md`-based structure and can be used in environments that support local skill modules. Some metadata is convenient for Codex-style setups, but the underlying knowledge is deliberately written as portable research procedure: Markdown workflows, rubrics, checklists, venue adapters, templates, and reference notes.
 
@@ -45,11 +45,11 @@ The family is organized as a layered research workflow.
 | **Idea Layer** | Shape and evaluate a research direction before manuscript writing. | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
 | **Evidence Layer** | Search high-quality literature and design experiments without fabricating results. | `ccf-literature-search`, `ccf-experiment-designer` |
 | **Manuscript Layer** | Turn a viable direction into a coherent CCF-A paper and compress it for limits. | `ccf-writing-skills`, `ccf-paper-compressor` |
-| **Review Layer** | Simulate reviewer and AC pressure before submission. | `ccf-conference-paper-reviewer` |
+| **Review Layer** | Run paragraph-by-paragraph writing, LaTeX/format, consistency, and reviewer-readability review before submission. | `ccf-conference-paper-reviewer` |
 | **Response Layer** | Translate reviews into clear author responses and revision commitments. | `ccf-conference-paper-rebuttal` |
 | **Maintenance Layer** | Create, refine, validate, and govern skill modules. | `forge-skills`, `ccf-common` |
 
-The workflow is routed rather than free-form. `ccf-common/references/routing.md` defines the owner for each task so that idea optimization, idea scoring, literature search, experiment design, manuscript writing, compression, full-paper review, rebuttal, and skill maintenance do not compete for the same request.
+The workflow is routed rather than free-form. `ccf-common/references/routing.md` defines the owner for each task so that idea optimization, idea scoring, literature search, experiment design, manuscript writing, compression, paper writing review, rebuttal, and skill maintenance do not compete for the same request.
 
 Cross-skill handoff is controlled by `metadata.ccf_skill_controls.handoff_question_mode`:
 
@@ -60,7 +60,7 @@ Cross-skill handoff is controlled by `metadata.ccf_skill_controls.handoff_questi
 ```text
 raw idea
   -> ccf-idea-optimizer                              : problem / method / evidence framing
-  -> ccf-idea-reviewer                               : problem-method gate when scoring/ranking is requested
+  -> ccf-idea-reviewer                               : search-backed strict problem-method gate when scoring/ranking is requested
   -> ccf-literature-search                           : prior art / datasets / benchmarks when current evidence is needed
   -> ccf-experiment-designer                         : baselines / ablations / result-fill tables
        if weak but fixable and handoff allows         : return to optimizer for targeted repair
@@ -71,7 +71,7 @@ writing request
   -> ccf-writing-skills                              : writing-only by default
        idea-scope change requires explicit confirm   : otherwise mark Idea-level risk
        length/page compression follows handoff mode   : ccf-paper-compressor
-       full-paper review follows handoff mode         : ccf-conference-paper-reviewer
+       paper writing review follows handoff mode      : ccf-conference-paper-reviewer
 
 explicit rebuttal request or real reviews arrive
   -> ccf-conference-paper-rebuttal                   : author response and revision promises
@@ -102,9 +102,9 @@ It is most useful when an idea is promising but still underdetermined. The skill
 
 ### `ccf-idea-reviewer`
 
-Evaluates the problem and method before the manuscript exists. It uses multiple expert viewpoints, including field, method, experiment, venue, and skeptical prior-art perspectives.
+Evaluates the problem and method before the manuscript exists. In standard mode it searches closest related work with public-safe queries, compares the idea against prior art, and then uses multiple expert viewpoints: field, method, experiment, venue, and skeptical prior-art perspectives.
 
-Its purpose is not to reward confidence. It distinguishes low novelty from unknown novelty, feasibility risk from weak framing, and fixable design issues from reasons to pivot. This is where an idea receives a research-level diagnosis before writing energy is spent.
+Its purpose is not to reward confidence or produce generic encouragement. It distinguishes low novelty from unknown novelty, feasibility risk from weak framing, and fixable design issues from reasons to pivot. Every major criticism is tied to an idea claim, closest-work or evidence anchor, reviewer deduction, and concrete repair condition.
 
 ### `ccf-literature-search`
 
@@ -132,7 +132,7 @@ It can run in quick mode for local shortening or standard mode for full-section/
 
 ### `ccf-conference-paper-reviewer`
 
-Simulates skeptical but fair conference review. It reads like a program committee member rather than a coauthor, identifies likely deductions, calibrates scores, and converts weaknesses into revision actions.
+Acts as a paper writing reviewer while keeping the backwards-compatible skill name. It reads the manuscript paragraph by paragraph, audits storyline, LaTeX/format, claim-evidence alignment, consistency, figure/table narration, and contribution presentation, then converts each issue into a location-specific revision action.
 
 It is designed to make pre-submission review actionable: what can be fixed by writing, what needs analysis, what requires a new result, what should be scoped as a limitation, and what indicates a venue mismatch.
 
@@ -260,12 +260,12 @@ To update an installation, run `git pull` in your local clone and copy the skill
 
 ```text
 Use ccf-idea-optimizer to refine this rough CVPR idea into a problem-method-evidence plan.
-Use ccf-idea-reviewer to rank these NeurIPS directions and identify fatal risks.
+Use ccf-idea-reviewer to rank these NeurIPS directions with closest-work search and strict fatal-risk diagnosis.
 Use ccf-literature-search to find and score high-quality related work for my Introduction.
 Use ccf-experiment-designer to design datasets, baselines, ablations, and result-fill tables.
 Use ccf-writing-skills to rebuild my introduction around the actual contribution.
 Use ccf-paper-compressor to reduce this Related Work section to 800 words.
-Use ccf-conference-paper-reviewer to simulate CCF-A reviewers before submission.
+Use ccf-conference-paper-reviewer to review my manuscript paragraph by paragraph for writing logic, LaTeX/format, and consistency before submission.
 Use ccf-conference-paper-rebuttal to draft a concise response from these reviews.
 ```
 

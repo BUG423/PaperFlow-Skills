@@ -1,108 +1,96 @@
-# Review Checklists
+# Writing Review Checklists
 
-Use this file to prevent omissions during conference paper scoring, review, meta-review, revision planning, and re-scoring.
+Use this file to prevent omissions during manuscript writing review, paragraph-by-paragraph review, LaTeX/format audit, revision planning, and optional scientific-score add-ons.
 
 ## Intake Checklist
 
-- Target venue, year, track, and paper type are stated, or generic CS conference review is explicitly assumed.
-- Manuscript scope is stated: abstract only, section, main paper, full paper, appendix, reviews, or revised draft.
+- Target venue, year, track, and paper type are stated, or generic CS conference writing review is explicitly assumed.
+- Manuscript scope is stated: abstract only, section, main paper, full paper, appendix, TeX source, reviews, or revised draft.
+- Requested mode is selected: quick writing scan, standard writing review, paragraph-by-paragraph review, LaTeX/format audit, consistency audit, or revision planning.
 - Missing materials that affect confidence are named.
-- Current-year official rules are checked when the user asks for latest policy, page limits, review forms, or compliance.
-- The requested mode is selected: full review, score-only, AC/meta-review, revision planning, or post-revision re-score.
+- Current-year official rules are checked when the user asks for latest policy, page limits, templates, anonymization, or compliance.
 
-## Full Review Checklist
+## Full Writing Review Checklist
 
-- Paper summary is concise and neutral.
-- Contributions are stated as the paper claims them.
-- Universal dimensions are scored: novelty/contribution, significance, soundness, evidence, clarity, positioning, reproducibility, ethics/limitations.
-- Venue-specific expectations are applied from `venue-review-styles.md`.
-- Strengths are tied to manuscript evidence.
-- Weaknesses are ranked by severity.
-- Fatal risks are separated from medium and low issues.
-- Claim-evidence audit is included for major claims.
-- Missing baselines, ablations, proofs, studies, datasets, or analyses are named.
-- Reproducibility and ethics risks are checked.
-- Questions for authors are decision-relevant.
-- At least three perspectives are included: method/soundness reviewer, evidence/experiment reviewer, and venue/AC reviewer.
-- AC/meta-review synthesizes the likely discussion outcome.
-- Revision actions are concrete and fix-classed.
+- The paper's intended story is summarized in one sentence.
+- Abstract, introduction, contribution list, headings, figures/tables, and conclusion are read before local paragraph comments.
+- Contributions are stated as the paper claims them and checked for specificity, overlap, and evidence support.
+- High-impact paragraphs receive IDs and local diagnoses.
+- Paragraph issues are tied to role, takeaway, logic, evidence, redundancy, and concrete edit action.
+- Global motivation and problem-gap-root-challenge chain are checked.
+- Claim-evidence alignment is included for major claims.
+- Terminology, notation, datasets, models, and contribution wording are checked across sections.
+- Related work is checked for closest-work positioning, not citation-list volume.
+- Figures/tables/captions/equations/algorithms are checked when present.
+- LaTeX/source/template issues are checked when source or snippets are available.
+- Weaknesses are ranked by severity and converted into concrete revision actions.
 - Checklist status is reported.
 
-## Score-Only Checklist
+## Paragraph-By-Paragraph Checklist
 
-Use this compact structure when the user only wants scores:
+- Paragraph IDs are assigned by section.
+- Each high-impact paragraph has a current role and desired reviewer takeaway.
+- A paragraph is flagged when it mixes multiple jobs.
+- Unsupported claims are tied to the exact missing citation/result/proof/example/qualification.
+- Repeated material is marked as cut, merge, move, or appendix candidate.
+- Transitions between paragraphs are checked for causal order.
+- Edit actions are concrete: keep, reorder, split, merge, cut, move, qualify, expand, or rewrite.
+
+## LaTeX / Format Checklist
+
+- Template/class/style and anonymity/camera-ready mode match the stated venue when known.
+- Sectioning, abstract, appendix, acknowledgments, bibliography, and supplemental material follow the expected structure.
+- Labels, refs, citations, and bibliography commands are checked for missing, duplicate, or stale items.
+- Figures and tables have readable sizing, self-contained captions, and text references.
+- Equations and notation are introduced before use and remain consistent.
+- Algorithms use variables that match the method text.
+- Manual spacing hacks, excessive resizing, and style-breaking overrides are flagged.
+- Compilation status is stated as compiled / inspected only / not available.
+
+## Quick Writing Scan
+
+Use this compact structure when the user only wants a quick diagnosis:
 
 ```text
-Venue/assumptions:
-Overall score:
-Confidence:
-Acceptance-risk label:
-Per-criterion scores:
-Top 3 score blockers:
-Top 3 strengths:
-Score-change conditions:
+Scope:
+Quick verdict:
+Main reviewer confusion:
+Top 3 writing risks:
+Exact edit actions:
+Unresolved materials:
 Checklist status:
 ```
 
-Rules:
-
-- Do not give an overall score without at least a short justification.
-- Do not estimate review-risk reduction without naming the concrete change.
-- Low confidence must be reported instead of hidden.
-
-## AC / Meta-Review Checklist
-
-- Summarize reviewer consensus and disagreement.
-- Identify the decisive accept/reject axis.
-- Weigh fatal risks above local writing polish.
-- Check whether manuscript clarification or revision could plausibly change scores.
-- State the likely AC stance: clear accept, lean accept, borderline, lean reject, clear reject.
-- Include a confidence level and missing information.
-
 ## Revision Planning Checklist
 
-- Every material weakness has a revision action.
-- Each action has a fix class: writing-fixable, analysis-fixable, citation/positioning, figure/table, reproducibility, requires-new-result, accepted-limitation, or venue-mismatch.
+- Every material writing weakness has a revision action.
+- Each action has a fix class: writing-fixable, structure-fixable, claim-qualification, citation/positioning, figure/table, LaTeX/format, compression, requires-new-result, accepted-limitation, or venue-mismatch.
 - Actions requiring new experiments, proofs, baselines, or studies are separated from writing-only fixes.
 - Required edits identify where to revise.
-- Conditional review-risk effect is tied to the criterion affected.
-- Claims to weaken or remove are listed.
+- Claims to weaken, move, support, or remove are listed.
+- Risk-reduction condition is tied to reviewer confusion or format compliance.
 
-## Post-Revision Re-Score Checklist
+## Optional Scientific-Score Add-On
 
-- Compare original blocker and revised text/evidence.
-- Ask whether the same skeptical reviewer would repeat the criticism.
-- Re-score only criteria affected by concrete changes.
-- Keep unresolved new-result requirements visible.
-- Report before/after score and confidence if enough evidence is available.
+Use only when the user explicitly asks for paper scoring, simulated reviewers, AC/meta-review, or acceptance-style risk. Keep it secondary to the writing review unless the user requests otherwise.
 
-## Fatal-Risk Checklist
-
-Check these before local clarity issues:
-
-- central contribution unclear,
-- novelty collapse against close prior work,
-- unsupported central claim,
-- invalid method, theorem, study design, threat model, or evaluation protocol,
-- missing strongest baseline or decisive comparison,
-- insufficient evidence for the claimed contribution type,
-- irreproducible key result,
-- serious ethics, policy, anonymity, or data issue,
-- target venue mismatch.
+- Universal scientific dimensions are scored from `universal-review-rubric.md`.
+- Venue-specific expectations are applied from `venue-review-styles.md`.
+- Fatal scientific risks are separated from writing/format risks.
+- Numeric scores use `score-calibration.md`.
+- Score changes are conditional and tied to concrete revisions or evidence.
 
 ## Minimal Checklist Status
-
-Use this compact status when output space is limited:
 
 ```text
 Checklist status:
 - Venue/assumptions:
 - Reading scope:
-- Criteria scoring:
+- Paragraph IDs:
+- Storyline:
 - Claim-evidence:
-- Fatal risks:
-- Multi-reviewer/AC:
+- Consistency:
+- LaTeX/format:
 - Revision actions:
-- Re-score gate:
 - Unresolved:
 ```

@@ -20,6 +20,8 @@ python ..\ccf-common\scripts\check_sources.py
 
 - Verify current venue policies from official conference pages when the user asks about latest rules, review forms, tracks, or deadlines.
 - Use primary papers, proceedings pages, official project pages, or credible scholar pages for novelty checks.
+- In standard mode, record public-safe search queries and closest-work evidence before making strong novelty claims.
 - Treat unsearched prior art as uncertainty, not proof of novelty.
-- Use public frameworks as scaffolds for judgment; do not copy their wording or treat them as venue-specific scoring forms.
+- Use public peer-review and research-question frameworks as scaffolds for judgment; do not copy their wording or treat them as venue-specific scoring forms.
 - Follow `../ccf-common/references/privacy-and-evidence.md` before using private idea text in any search query.
+- Exclude MDPI from literature discovery by CCFA policy unless the user explicitly asks to discuss why a specific MDPI paper should be ignored.

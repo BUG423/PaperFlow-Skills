@@ -1,4 +1,4 @@
 interface:
   display_name: "CCF Idea Reviewer"
-  short_description: "Score early CCF-A research ideas."
-  default_prompt: "Use $ccf-idea-reviewer to score, rank, and stress-test my research idea or 选题 with multi-expert CCF-A criteria. Follow CCFA handoff_question_mode for literature search, optimizer, experiment design, or writing skills; respect disabled skills and do not invent prior art, evidence, or acceptance probability."
+  short_description: "Strictly score early CCF-A research ideas with closest-work search and no-filler reviewer comments."
+  default_prompt: "Use $ccf-idea-reviewer to 严格锐评, score, rank, and stress-test my research idea or 选题. In standard mode, search closest literature with public-safe queries first, exclude MDPI, compare novelty against closest work, and give harsh but professional target-venue comments. Every criticism must name the claim, evidence/prior-art anchor, reviewer deduction, and concrete repair. Respect CCFA handoff_question_mode and do not invent prior art, evidence, or acceptance probability."

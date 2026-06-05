@@ -133,6 +133,42 @@ sources:
     verified_at: null
     stale_after_days: 730
     notes: Used for constructive technical review structure.
+  - id: plos-reviewer-feedback
+    title: PLOS How To Write A Peer Review
+    url: https://plos.org/resource/how-to-write-a-peer-review/
+    source_type: background_method
+    used_by: [ccf-conference-paper-reviewer, ccf-idea-reviewer]
+    recorded_at: 2026-06-05
+    verified_at: null
+    stale_after_days: 365
+    notes: Use for peer-review process, paper-reading workflow, and specific actionable review feedback.
+  - id: springer-nature-how-to-peer-review
+    title: Springer Nature How To Peer Review
+    url: https://www.springernature.com/gp/reviewers/how-to-peer-review
+    source_type: background_method
+    used_by: [ccf-conference-paper-reviewer, ccf-idea-reviewer]
+    recorded_at: 2026-06-05
+    verified_at: null
+    stale_after_days: 365
+    notes: Use for review structure, manuscript clarity, evidence, and reviewer responsibility scaffolding.
+  - id: acm-preparing-article-latex
+    title: ACM Preparing Your Article With LaTeX
+    url: https://authors.acm.org/proceedings/production-information/preparing-your-article-with-latex
+    source_type: official_policy
+    used_by: [ccf-conference-paper-reviewer]
+    recorded_at: 2026-06-05
+    verified_at: null
+    stale_after_days: 180
+    notes: Use for ACM LaTeX template and proceedings-production checks; verify target conference rules separately.
+  - id: ieee-authoring-tools-templates
+    title: IEEE Authoring Tools And Templates
+    url: https://journals.ieeeauthorcenter.ieee.org/create-your-ieee-journal-article/authoring-tools-and-templates/
+    source_type: official_policy
+    used_by: [ccf-conference-paper-reviewer]
+    recorded_at: 2026-06-05
+    verified_at: null
+    stale_after_days: 180
+    notes: Use for IEEE LaTeX/template and authoring-tool checks; verify target publication rules separately.
   - id: cspaper-review
     title: CSPaper Review
     url: https://cspaper.org/openprint/20260212.0001v1

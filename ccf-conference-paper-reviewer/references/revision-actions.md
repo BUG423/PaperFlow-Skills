@@ -1,17 +1,21 @@
 # Revision Actions
 
-Use this file to convert review deductions into concrete improvements. The goal is a closed loop: diagnose, revise, re-score.
+Use this file to convert writing-review deductions into concrete improvements. The goal is a closed loop: diagnose, revise, and confirm that the same reviewer confusion would not remain.
 
-Before producing a revision plan, load `references/review-checklists.md` and apply its revision-planning and re-score checks.
+Before producing a revision plan, load `references/review-checklists.md` and apply its writing-revision checks. Use scientific re-score checks only when the user explicitly asks for acceptance-style scoring.
 
 ## Action Classes
 
 Classify every issue:
 
 - Writing-fixable: contribution statement, paragraph flow, terminology, figure narration, related-work framing, limitation wording.
+- Structure-fixable: reorder sections, move paragraphs, split mixed paragraphs, merge repeated paragraphs, or change section headings.
+- Claim-qualification: weaken, scope, move, or support claims that currently exceed evidence.
 - Analysis-fixable: add deeper explanation, error analysis, complexity analysis, sensitivity analysis, qualitative analysis, or proof intuition using existing results.
 - Citation/positioning: add close related work and explain the technical difference, not just a citation.
 - Figure/table: improve readability, captions, grouping, visual examples, failure cases, or main-text signposting.
+- LaTeX/format: fix template, labels, references, citations, captions, equations, algorithms, package conflicts, or spacing/style violations.
+- Compression: cut redundant background, move detail to appendix, merge paragraphs, shorten captions, or reduce repetitive result narration.
 - Reproducibility: add pseudocode, implementation details, hyperparameters, dataset splits, metrics, code/data availability, artifact notes.
 - Requires-new-result: new baseline, ablation, dataset, theorem, user study, measurement, statistical test, or deployment evaluation.
 - Accepted-limitation: disclose scope honestly when the issue cannot be solved before submission.
@@ -116,6 +120,39 @@ Actions:
 - Stabilize terminology across sections.
 - Use figures and captions to explain mechanism and evidence.
 
+### Paragraph logic broken
+
+Reviewer deduction: "This paragraph mixes roles or does not advance the argument."
+
+Actions:
+
+- Assign the paragraph one job: motivation, gap, insight, method, evidence, limitation, or transition.
+- Split mixed claim/evidence/background paragraphs.
+- Move details to the section where a reviewer expects them.
+- Replace vague transition sentences with the specific logical link to the next paragraph.
+
+### LaTeX or format risk
+
+Reviewer deduction: "The submission looks careless or may violate venue rules."
+
+Actions:
+
+- Fix template mode, anonymization/camera-ready settings, page limits, and appendix placement.
+- Resolve undefined references, duplicate labels, missing citations, and stale figure/table references.
+- Remove style-breaking spacing hacks unless the venue template permits them.
+- Make captions self-contained and ensure tables/figures remain readable without excessive scaling.
+
+### Terminology or notation inconsistent
+
+Reviewer deduction: "I cannot tell whether these terms refer to the same object."
+
+Actions:
+
+- Choose one canonical term for each concept and use it throughout.
+- Define symbols before first use and reuse notation consistently.
+- Align abstract, introduction, method, experiments, and conclusion wording for the same contribution.
+- Add a notation table only if the method section is notation-heavy.
+
 ### Overclaim
 
 Reviewer deduction: "The paper overstates its result."
@@ -162,5 +199,7 @@ After revision, ask:
 3. Are the closest baselines and related works handled?
 4. Are limitations honest and bounded?
 5. Is the target venue's evidence package visible in the main text?
+6. Does the paragraph now have one clear role and one retained message?
+7. Are labels, citations, captions, notation, and format issues actually fixed in source?
 
 Do not mark an issue fixed until the revised text or available evidence would plausibly change a criterion score.
