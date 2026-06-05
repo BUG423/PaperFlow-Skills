@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### A research-assistant skill family for CCF-A ideation, literature grounding, experiment design, manuscript development, strict writing review, and author response.
+### A research-assistant skill family for CCF-A brainstorming, ideation, literature grounding, experiment design, manuscript development, strict writing review, and author response.
 
 <p>
   <strong>English</strong> ·
@@ -20,7 +20,7 @@
 
 ## Project Orientation
 
-CCFA Skills is a family of agent-readable research skills for CCF-A-oriented academic work. It is designed for the part of research that sits between an informal idea and a defensible submission: clarifying the problem, articulating a method, searching and scoring related work, grounding novelty, designing evidence, writing and compressing the manuscript, running strict writing/format review, and responding after review.
+CCFA Skills is a family of agent-readable research skills for CCF-A-oriented academic work. It is designed for the part of research that sits between an informal idea and a defensible submission: clarifying a complex request, articulating a method, searching and scoring related work, grounding novelty, designing evidence, writing and compressing the manuscript, running strict writing/format review, and responding after review.
 
 The repository is not meant to be tied to a single model or interface. The files follow a `SKILL.md`-based structure and can be used in environments that support local skill modules. Some metadata is convenient for Codex-style setups, but the underlying knowledge is deliberately written as portable research procedure: Markdown workflows, rubrics, checklists, venue adapters, templates, and reference notes.
 
@@ -42,6 +42,7 @@ The family is organized as a layered research workflow.
 
 | Layer | Purpose | Skills |
 | --- | --- | --- |
+| **Intake Layer** | Clarify goals, constraints, workflow options, and the next CCFA skill for complex requests. | `ccf-brainstorming` |
 | **Idea Layer** | Shape and evaluate a research direction before manuscript writing. | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
 | **Evidence Layer** | Search high-quality literature and design experiments without fabricating results. | `ccf-literature-search`, `ccf-experiment-designer` |
 | **Manuscript Layer** | Turn a viable direction into a coherent CCF-A paper and compress it for limits. | `ccf-writing-skills`, `ccf-paper-compressor` |
@@ -49,7 +50,7 @@ The family is organized as a layered research workflow.
 | **Response Layer** | Translate reviews into clear author responses and revision commitments. | `ccf-conference-paper-rebuttal` |
 | **Maintenance Layer** | Create, refine, validate, and govern skill modules. | `forge-skills`, `ccf-common` |
 
-The workflow is routed rather than free-form. `ccf-common/references/routing.md` defines the owner for each task so that idea optimization, idea scoring, literature search, experiment design, manuscript writing, compression, paper writing review, rebuttal, and skill maintenance do not compete for the same request.
+The workflow is routed rather than free-form. `ccf-common/references/routing.md` defines the owner for each task so that brainstorming, idea optimization, idea scoring, literature search, experiment design, manuscript writing, compression, paper writing review, rebuttal, and skill maintenance do not compete for the same request.
 
 Cross-skill handoff is controlled by `metadata.ccf_skill_controls.handoff_question_mode`:
 
@@ -59,6 +60,7 @@ Cross-skill handoff is controlled by `metadata.ccf_skill_controls.handoff_questi
 
 ```text
 raw idea
+  -> ccf-brainstorming                              : optional for ambiguous or multi-stage requests
   -> ccf-idea-optimizer                              : problem / method / evidence framing
   -> ccf-idea-reviewer                               : search-backed strict problem-method gate when scoring/ranking is requested
   -> ccf-literature-search                           : prior art / datasets / benchmarks when current evidence is needed
@@ -93,6 +95,12 @@ The second `ccf-idea-optimizer` pass is therefore not duplication. The first pas
 This structure matters because CCF-A review is not a single score but a negotiation among novelty, significance, soundness, evidence, clarity, reproducibility, and venue fit. The skills separate these dimensions while keeping their dependencies visible.
 
 ## Skill Family
+
+### `ccf-brainstorming`
+
+Clarifies complex research requests before downstream work. It turns fuzzy goals into a bounded research-task brief: decision to make, audience, available inputs, constraints, success criteria, workflow options, and recommended next CCFA skill.
+
+It is an on-demand upstream module, not a global hard gate. It should be used when the user wants brainstorming, requirements clarification, task decomposition, research-route discussion, or a design brief before choosing a downstream skill.
 
 ### `ccf-idea-optimizer`
 
@@ -168,6 +176,7 @@ Provides the shared control layer for CCFA routing, handoff modes, private-mater
 Copy complete skill directories, not only `SKILL.md`. Several modules rely on `references/`, `assets/`, templates, and relative cross-skill references. The installable folders are:
 
 ```text
+ccf-brainstorming
 ccf-idea-optimizer
 ccf-idea-reviewer
 ccf-literature-search
@@ -259,6 +268,7 @@ To update an installation, run `git pull` in your local clone and copy the skill
 ## Example Requests
 
 ```text
+Use ccf-brainstorming to clarify this broad research workflow and choose the next CCFA skill.
 Use ccf-idea-optimizer to refine this rough CVPR idea into a problem-method-evidence plan.
 Use ccf-idea-reviewer to rank these NeurIPS directions with closest-work search and strict fatal-risk diagnosis.
 Use ccf-literature-search to find and score high-quality related work for my Introduction.
