@@ -149,7 +149,7 @@ Fix class:
 Required edit:
 Evidence needed:
 Where to revise:
-Expected score impact:
+Risk-reduction condition:
 Status: open / fixed / requires new result / accepted limitation
 ```
 

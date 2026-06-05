@@ -40,6 +40,17 @@ Alternative designs rejected:
 
 If the method is a combination of known components, identify the non-obvious interaction. If no interaction exists, the idea is likely an engineering assembly and needs a sharper contribution or a stronger benchmark/evidence story.
 
+## Coherence Filter
+
+Before presenting an optimized idea, check:
+
+- The problem setting and method assumptions are compatible.
+- The proposed evidence can actually test the central claim.
+- The contribution type matches the evidence type.
+- The target venue audience would care about the problem, not only the technique.
+- No module requires data, supervision, deployment access, or theoretical assumptions that conflict with another module.
+- The idea does not rely on mutually exclusive claims such as "training-free" and "requires large fine-tuning" unless the distinction is scoped.
+
 ## Innovation Types
 
 Classify the strongest honest contribution:
@@ -63,6 +74,7 @@ An elegant idea usually has:
 - A simple claim that can be tested directly.
 - A failure mode that is understandable.
 - A result that would teach the community something even if SOTA gains are modest.
+- A design that removes a bottleneck or reveals a simpler formulation, not merely a longer pipeline.
 
 ## Fatal Idea Risks
 

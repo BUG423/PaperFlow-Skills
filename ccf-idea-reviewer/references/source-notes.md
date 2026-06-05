@@ -2,23 +2,24 @@
 
 Use this file when explaining the scoring system or when current policy/literature grounding matters.
 
-## Public Criteria
+## Shared Registry
 
-- DARPA Heilmeier Catechism: `https://www.darpa.mil/about/heilmeier-catechism`
-- NSF merit review criteria: `https://www.nsf.gov/bfa/dias/policy/merit_review/`
-- NeurIPS reviewer guidelines: `https://neurips.cc/Conferences/2026/ReviewerGuidelines`
-- ICLR reviewer guide: `https://iclr.cc/Conferences/2026/ReviewerGuide`
+The authoritative CCFA source inventory is:
 
-## Related Automated Research And Skills
+```text
+../ccf-common/references/source-registry.yaml
+```
 
-- Academic research skills for Codex: `https://github.com/Imbad0202/academic-research-skills-codex`
-- Auto Claude research-in-sleep idea creator: `https://github.com/wanshuiyin/Auto-claude-code-research-in-sleep/blob/main/skills/idea-creator/SKILL.md`
-- The AI Scientist: `https://arxiv.org/abs/2408.06292`
-- LLM research idea generation / evaluation studies: `https://arxiv.org/abs/2409.04109`
+Do not duplicate long URL lists in this skill. Add or update public source records in the shared registry, then run:
 
-## Use Rules
+```powershell
+python ..\ccf-common\scripts\check_sources.py
+```
+
+## Idea-Reviewer Use Rules
 
 - Verify current venue policies from official conference pages when the user asks about latest rules, review forms, tracks, or deadlines.
-- Use primary papers or official project pages for novelty checks.
+- Use primary papers, proceedings pages, official project pages, or credible scholar pages for novelty checks.
 - Treat unsearched prior art as uncertainty, not proof of novelty.
 - Use public frameworks as scaffolds for judgment; do not copy their wording or treat them as venue-specific scoring forms.
+- Follow `../ccf-common/references/privacy-and-evidence.md` before using private idea text in any search query.

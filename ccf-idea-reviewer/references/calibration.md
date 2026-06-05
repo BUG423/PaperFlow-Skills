@@ -49,7 +49,7 @@ Severity: high / medium / low
 Fix class:
 Can fix before writing? yes / partly / no
 Required evidence or design change:
-Expected score impact:
+Risk-reduction condition:
 Owner skill: ccf-idea-optimizer / ccf-writing-skills / ccf-conference-paper-reviewer
 ```
 

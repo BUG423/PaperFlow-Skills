@@ -20,6 +20,17 @@ Deadline and resource constraints:
 Non-goals:
 ```
 
+For fuzzy ideas, also collect or infer:
+
+```text
+Seed direction:
+What should stay fixed:
+What may vary:
+Desired novelty risk: conservative / balanced / exploratory
+Preferred method taste: simple / elegant / theoretical / system-building / empirical / interdisciplinary
+Fields to avoid:
+```
+
 If a field is unknown, infer it from the method and venue names. If the target venue is unknown, assume a generic CCF-A target and mark venue-specific advice as lower confidence.
 
 ## Normalized Idea Card
@@ -41,11 +52,14 @@ Best venue fit:
 
 Hard rule: if the root challenge is only "existing methods perform poorly", refine it into a technical, scientific, empirical, human-centered, or systems bottleneck.
 
+For fuzzy ideas, produce several normalized cards before choosing one. Do not collapse the search space too early.
+
 ## Missing-Input Labels
 
 Use these labels instead of guessing:
 
 - `needs-literature-search`: closest work is unknown or likely fast-moving.
+- `needs-frontier-grounding`: the idea may be stale or crowded and needs current paper search.
 - `needs-feasibility-check`: data, compute, implementation complexity, or timeline is unclear.
 - `needs-domain-constraint`: the real-world setting, threat model, user group, or workload is underspecified.
 - `needs-evidence-design`: the paper claim is clearer than the experiment plan.

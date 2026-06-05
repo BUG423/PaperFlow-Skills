@@ -1,23 +1,30 @@
 ---
 name: ccf-conference-paper-rebuttal
-description: "Write, revise, structure, checklist-audit, and produce TeX templates for conference paper rebuttals, author responses, response letters, revision summaries, and responses to reviewer comments for computer-science conferences such as AAAI, NeurIPS, ICML, ICLR, ACL, CVPR, ICCV, ECCV, SIGKDD, SIGMOD, SIGCOMM, CCS, CHI, STOC/FOCS, and similar venues. Use when the user asks to answer reviewers, draft rebuttal text, create a rebuttal TeX file, plan an author response, address review comments, respond to meta-review or AC concerns, or prepare a resubmission response."
+description: "Write, revise, structure, checklist-audit, and produce TeX templates for conference paper rebuttals, author responses, response letters, revision summaries, and responses to reviewer comments for computer-science conferences such as AAAI, NeurIPS, ICML, ICLR, ACL, CVPR, ICCV, ECCV, SIGKDD, SIGMOD, SIGCOMM, CCS, CHI, STOC/FOCS, and similar venues. Use only when the user explicitly asks to answer reviewers, draft rebuttal text, create a rebuttal TeX file, plan an author response, address review comments, respond to meta-review or AC concerns, or prepare a resubmission response; 中文触发: rebuttal, 审稿意见回复, 作者回应, response letter, AC回应, meta-review回复, 修改说明."
 metadata:
   ccf_skill_controls:
-    ask_before_optional_modules: true
-    if_ask_disabled: use_optional_modules_by_default
+    handoff_question_mode: partial
     respect_session_denylists: true
     protect_idea_scope_in_writing: true
+    private_material_safety: moderate
+    shared_controls: ../ccf-common/references/
 ---
 
 # CCF Conference Paper Rebuttal
 
 ## Invocation Controls
 
-Treat sibling skills as optional modules unless the user explicitly named them in the current request. Before the first optional handoff in a conversation, ask whether to use that module. If `metadata.ccf_skill_controls.ask_before_optional_modules` is `false`, optional modules may be used by default, but an explicit user denylist still wins.
+**CCFA Handoff Mode: PARTIAL (Recommended).** Follow `metadata.ccf_skill_controls.handoff_question_mode` and `../ccf-common/references/handoff-modes.md`. Use `../ccf-common/references/routing.md` to keep rebuttal tasks separate from paper review and manuscript writing.
+
+This skill is isolated from the default CCFA pre-submission loop. Do not activate it from another skill unless the user explicitly asked for rebuttal, author response, response letter, resubmission response, or 审稿意见回复.
+
+Load `../ccf-common/references/task-modes.md` before deciding quick or standard mode. Use quick mode for one reviewer comment or a short response. Use standard mode for full multi-reviewer rebuttals, TeX files, AC/meta-review responses, or resubmission response letters.
 
 If the user says not to use, disable, skip, or avoid a sibling skill, do not invoke or simulate that skill for the rest of the conversation. Use this skill's local fallback instead: issue table, response strategy, draft response, and promised-change list without cross-skill execution.
 
-Do not invent results, experiments, paper changes, reviewer concessions, or likely score impact. Commit only to clarifications, analyses, or revisions that the user can support.
+Do not invent results, experiments, paper changes, reviewer concessions, or review-risk effects. Commit only to clarifications, analyses, or revisions that the user can support.
+
+Treat reviews, rebuttal drafts, and unpublished manuscripts as private user data. Load `../ccf-common/references/privacy-and-evidence.md` before browsing, using private text in a query, or making evidence/provenance claims.
 
 ## Core Rule
 
@@ -25,7 +32,7 @@ Write responses that are calm, factual, evidence-grounded, and reviewer-facing. 
 
 ## Mandatory Checklist
 
-Complete this before final output. For a short response to one comment, use the relevant subset and state unresolved items.
+In standard mode, complete this before final output. In quick mode, use the relevant subset and state unresolved items.
 
 1. Venue, response format, word limit, and deadline constraints are explicit or marked unknown.
 2. Reviewer comments are grouped by reviewer, issue type, and decision relevance.
@@ -53,7 +60,7 @@ Load `references/response-checklists.md` for full response letters, multiple rev
 5. Keep each response concise: acknowledge, quote the core concern, answer directly, cite evidence, address the deeper intent, state exact changes or limitations, and close with shared ground.
 6. For full rebuttals, default to a TeX file with three sections: `General Response`, `Common Concerns`, and `Reviewer-Specific Clarifications`. Load `references/tex-templates.md` and use `assets/templates/default-general-common-reviewer.tex` unless the user requests another template.
 7. Load `references/response-checklists.md` before finalizing to audit tone, evidence, promises, reviewer colors, quote-answer structure, and word budget.
-8. If manuscript rewriting is needed after the response plan, ask before using `ccf-writing-skills`; if denied, output the revision action queue only. If scoring likely review impact is needed, ask before using `ccf-conference-paper-reviewer`; if denied, avoid score-impact claims.
+8. If manuscript rewriting, related-work grounding, experiment planning, or review-risk diagnosis is needed after the response plan, follow the CCFA handoff mode before using `ccf-writing-skills`, `ccf-literature-search`, `ccf-experiment-designer`, or `ccf-conference-paper-reviewer`. If a handoff is denied or disabled, output the revision action queue only and avoid review-impact claims.
 
 ## Output Contracts
 

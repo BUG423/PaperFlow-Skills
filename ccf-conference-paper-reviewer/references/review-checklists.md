@@ -47,7 +47,7 @@ Checklist status:
 Rules:
 
 - Do not give an overall score without at least a short justification.
-- Do not estimate score lift without naming the concrete change.
+- Do not estimate review-risk reduction without naming the concrete change.
 - Low confidence must be reported instead of hidden.
 
 ## AC / Meta-Review Checklist
@@ -65,7 +65,7 @@ Rules:
 - Each action has a fix class: writing-fixable, analysis-fixable, citation/positioning, figure/table, reproducibility, requires-new-result, accepted-limitation, or venue-mismatch.
 - Actions requiring new experiments, proofs, baselines, or studies are separated from writing-only fixes.
 - Required edits identify where to revise.
-- Expected score impact is tied to the criterion affected.
+- Conditional review-risk effect is tied to the criterion affected.
 - Claims to weaken or remove are listed.
 
 ## Post-Revision Re-Score Checklist

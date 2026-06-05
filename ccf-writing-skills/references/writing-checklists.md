@@ -1,6 +1,30 @@
 # Writing Checklists
 
-Use this file to prevent omissions during planning, drafting, revision, score lifting, and final readiness checks. For small paragraph edits, run only the relevant subset and state what was intentionally skipped.
+Use this file to prevent omissions during planning, drafting, revision, score-risk auditing, and final readiness checks. Load `../../ccf-common/references/task-modes.md` when deciding quick versus standard mode. For small paragraph edits in quick mode, run only the relevant subset and state what was intentionally skipped.
+
+## Quick Mode Checklist
+
+Use this for one paragraph, one small subsection, or single-pass polish:
+
+- Venue or style assumption is clear enough for the local edit.
+- Paragraph or subsection role is identified.
+- Technical meaning, results, datasets, baselines, and conclusion direction are preserved.
+- Local claims are supported, softened, or flagged.
+- No citation, result, experiment, or reviewer impact is invented.
+- Full paper storyline, full score-risk loop, and final-readiness checks are skipped unless the user requests standard mode.
+
+Compact status:
+
+```text
+Mode: quick
+Local checks:
+Skipped standard checks:
+Unresolved:
+```
+
+## Standard Mode Checklist
+
+Use the remaining checklist sections for full sections, whole papers, score-risk work, final readiness, literature-linked writing, or output that feeds another CCFA module.
 
 ## Intake Checklist
 
@@ -73,6 +97,7 @@ Scan for:
 
 - unclear contribution,
 - weak novelty positioning,
+- missing or stale related work,
 - significance unclear for the venue,
 - unsupported central claim,
 - weak baseline,
@@ -87,14 +112,15 @@ Scan for:
 
 ## Score-Lifting Checklist
 
-Use with `score-lifting-loop.md` and, only when explicitly requested or confirmed after the optional-module gate, `ccf-conference-paper-reviewer`.
+Use with `score-lifting-loop.md` and, only when explicitly requested or allowed by the CCFA handoff mode, `ccf-conference-paper-reviewer`. Use `ccf-literature-search`, `ccf-experiment-designer`, or `ccf-paper-compressor` through the same handoff rule when the blocker is missing prior art, evidence design, or page-limit pressure.
 
 - Current likely score or stance is stated.
 - Target score or readiness threshold is stated.
 - Top score blockers are ranked by severity.
 - Each blocker has a fix class: writing-fixable, analysis-fixable, citation/positioning, figure/table, reproducibility, requires-new-result, accepted-limitation, or venue-mismatch.
+- Literature-search, experiment-design, and compression blockers are separated from ordinary prose fixes.
 - Writing-only fixes are separated from fixes requiring new experiments, proofs, studies, or baselines.
-- Expected score impact is attached only to concrete changes.
+- Conditional review-risk effect is attached only to concrete changes.
 - After revision, the same reviewer concern is re-tested.
 
 ## Final Readiness Checklist
@@ -122,7 +148,7 @@ Checklist status:
 - Section roles:
 - Claim-evidence:
 - Reviewer risks:
-- Score-lifting:
+- Score-risk:
 - Final readiness:
 - Unresolved:
 ```

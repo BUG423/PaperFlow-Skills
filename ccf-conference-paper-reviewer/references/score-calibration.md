@@ -1,6 +1,6 @@
 # Score Calibration
 
-Use this file whenever assigning numeric scores, acceptance-risk labels, reviewer simulations, or expected score changes.
+Use this file whenever assigning numeric scores, acceptance-risk labels, reviewer simulations, or conditional diagnostic changes.
 
 ## Core Principle
 
@@ -66,7 +66,7 @@ Decision risk:
 
 ## CSPaper-Style Relative Interpretation
 
-When the user asks for "rank", "acceptance odds", or "how good compared with others", provide a cohort-relative interpretation without pretending to know the true venue pool:
+When the user asks for "rank", "acceptance probability", or "how good compared with others", provide a cohort-relative interpretation without pretending to know the true venue pool:
 
 - State that the percentile is an approximate calibration, not an official cutoff.
 - Prefer stance bands: bottom, below average, average/borderline, above average, strong, top-tier.
@@ -85,15 +85,15 @@ Use 1-5:
 
 Low confidence must lower the certainty of the recommendation, not automatically lower the paper score.
 
-## Score Delta Rules
+## Conditional Diagnostic Change Rules
 
-Estimate score improvement only for concrete changes:
+Discuss diagnostic movement only for concrete changes:
 
 - +0.5 to +1.0: clearer framing, better paragraph flow, sharper contribution statement, or fixed claim-evidence wording.
 - +1.0 to +2.0: added missing baseline, ablation, proof sketch, study detail, reproducibility details, or close related-work positioning.
 - +2.0 or more: only when a fatal concern is resolved with new evidence or a major restructuring that makes the true contribution visible.
 
-Do not promise a score lift for:
+Do not promise diagnostic improvement for:
 
 - unsupported stronger claims,
 - cosmetic wording only,

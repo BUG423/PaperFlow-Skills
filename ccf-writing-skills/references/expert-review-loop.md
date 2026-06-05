@@ -1,6 +1,6 @@
 # Expert Review Loop
 
-Use this before submission, after a full section is drafted, or whenever the user asks for reviewer-style critique. Pair it with `references/score-lifting-loop.md` when the goal is improving weak scores or acceptance odds.
+Use this before submission, after a full section is drafted, or whenever the user asks for reviewer-style critique. Pair it with `references/score-lifting-loop.md` when the goal is reducing weak-score risks or rejection risk.
 
 ## Review Roles
 
@@ -75,7 +75,7 @@ Required change:
 Where to revise:
 Suggested rewrite or experiment:
 Fix class:
-Expected score impact:
+Risk-reduction condition:
 Status: open / fixed / requires new result / accepted limitation
 ```
 
@@ -121,7 +121,7 @@ Before finalizing the review, ask:
 
 1. Does the overall score match the severity of the listed weaknesses?
 2. Would the most skeptical reviewer still have a fatal concern after the proposed revision?
-3. Are expected score improvements tied to concrete edits or evidence?
+3. Are conditional diagnostic changes tied to concrete edits or evidence?
 4. Are required new experiments, proofs, studies, or baselines clearly separated from writing-only fixes?
 5. Does the review use the target venue's taste instead of a generic positive tone?
 

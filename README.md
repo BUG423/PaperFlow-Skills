@@ -2,7 +2,7 @@
 
 # CCFA Skills
 
-### A research-assistant skill family for CCF-A ideation, manuscript development, review simulation, and author response.
+### A research-assistant skill family for CCF-A ideation, literature grounding, experiment design, manuscript development, review simulation, and author response.
 
 <p>
   <strong>English</strong> ·
@@ -20,7 +20,7 @@
 
 ## Project Orientation
 
-CCFA Skills is a family of agent-readable research skills for CCF-A-oriented academic work. It is designed for the part of research that sits between an informal idea and a defensible submission: clarifying the problem, articulating a method, grounding novelty, designing evidence, writing the manuscript, anticipating review, and responding after review.
+CCFA Skills is a family of agent-readable research skills for CCF-A-oriented academic work. It is designed for the part of research that sits between an informal idea and a defensible submission: clarifying the problem, articulating a method, searching and scoring related work, grounding novelty, designing evidence, writing and compressing the manuscript, anticipating review, and responding after review.
 
 The repository is not meant to be tied to a single model or interface. The files follow a `SKILL.md`-based structure and can be used in environments that support local skill modules. Some metadata is convenient for Codex-style setups, but the underlying knowledge is deliberately written as portable research procedure: Markdown workflows, rubrics, checklists, venue adapters, templates, and reference notes.
 
@@ -43,36 +43,48 @@ The family is organized as a layered research workflow.
 | Layer | Purpose | Skills |
 | --- | --- | --- |
 | **Idea Layer** | Shape and evaluate a research direction before manuscript writing. | `ccf-idea-optimizer`, `ccf-idea-reviewer` |
-| **Manuscript Layer** | Turn a viable direction into a coherent CCF-A paper. | `ccf-writing-skills` |
+| **Evidence Layer** | Search high-quality literature and design experiments without fabricating results. | `ccf-literature-search`, `ccf-experiment-designer` |
+| **Manuscript Layer** | Turn a viable direction into a coherent CCF-A paper and compress it for limits. | `ccf-writing-skills`, `ccf-paper-compressor` |
 | **Review Layer** | Simulate reviewer and AC pressure before submission. | `ccf-conference-paper-reviewer` |
 | **Response Layer** | Translate reviews into clear author responses and revision commitments. | `ccf-conference-paper-rebuttal` |
-| **Maintenance Layer** | Create, refine, and validate skill modules. | `forge-skills` |
+| **Maintenance Layer** | Create, refine, validate, and govern skill modules. | `forge-skills`, `ccf-common` |
 
-The workflow is gated rather than automatic. Every arrow that enters another skill is an optional module gate: if the skill was not explicitly requested, the assistant should ask before using it; if the user disabled it, the workflow must switch to a local fallback.
+The workflow is routed rather than free-form. `ccf-common/references/routing.md` defines the owner for each task so that idea optimization, idea scoring, literature search, experiment design, manuscript writing, compression, full-paper review, rebuttal, and skill maintenance do not compete for the same request.
+
+Cross-skill handoff is controlled by `metadata.ccf_skill_controls.handoff_question_mode`:
+
+- **PARTIAL (Recommended):** ask only for cross-stage transitions, possible idea-scope changes, formal reviewer/rebuttal execution, sensitive browsing, or reusable file generation.
+- **FULL:** ask before every optional sibling-skill handoff.
+- **OFF:** do not ask; automatically use the routed sibling skill when needed, while still respecting user denylists and writing-only idea-scope protection.
 
 ```text
 raw idea
-  -> [ask/if enabled] ccf-idea-optimizer             : problem / method / evidence framing
-  -> [ask/if enabled] ccf-idea-reviewer              : problem-method gate
-       if weak but fixable and enabled               : return to optimizer for targeted repair
+  -> ccf-idea-optimizer                              : problem / method / evidence framing
+  -> ccf-idea-reviewer                               : problem-method gate when scoring/ranking is requested
+  -> ccf-literature-search                           : prior art / datasets / benchmarks when current evidence is needed
+  -> ccf-experiment-designer                         : baselines / ablations / result-fill tables
+       if weak but fixable and handoff allows         : return to optimizer for targeted repair
        if fundamentally misaligned                   : pivot or stop
-       if viable and writing is enabled              : writing module becomes available
+       if viable and handoff allows                  : writing module becomes available
 
 writing request
   -> ccf-writing-skills                              : writing-only by default
        idea-scope change requires explicit confirm   : otherwise mark Idea-level risk
-       paper review is optional                      : ask before ccf-conference-paper-reviewer
+       length/page compression follows handoff mode   : ccf-paper-compressor
+       full-paper review follows handoff mode         : ccf-conference-paper-reviewer
 
-real reviews arrive
+explicit rebuttal request or real reviews arrive
   -> ccf-conference-paper-rebuttal                   : author response and revision promises
-       manuscript rewrite or review-impact scoring   : ask before optional module use
+       manuscript rewrite or review-risk diagnosis   : follows handoff mode
 ```
 
 **Writing-only mode.** `ccf-writing-skills` does not modify the research topic, core problem, method mechanism, experiment setting, reported results, or conclusion direction by default. It may improve expression, structure, storyline, claim-evidence alignment, and reviewer-facing packaging. Idea-level changes require explicit confirmation even if they look helpful.
 
 **Session denylist.** If a user says not to use a skill, that skill is disabled for the conversation. The assistant must not route around the decision by simulating the disabled module; it should use a local fallback such as a compact risk scan, action queue, or writing-only checklist.
 
-The second `ccf-idea-optimizer` pass is therefore not duplication and not automatic. The first pass gives a raw direction enough structure to be judged; a later pass happens only when the user allows optimizer again after reviewer diagnosis. The rebuttal skill is also conditional: it belongs to the post-review phase, while `ccf-conference-paper-reviewer` belongs to pre-submission pressure testing.
+**Task modes.** CCFA Skills supports `quick` and `standard` modes. `quick` is for one-paragraph polish, short local risk checks, small literature sanity scans, quick experiment sketches, or local compression; it does not force the full checklist. `standard` is the default for full sections, whole-paper reviews, literature folders, experiment plans, score-risk loops, and reusable files.
+
+The second `ccf-idea-optimizer` pass is therefore not duplication. The first pass gives a raw direction enough structure to be judged; a later pass happens after reviewer diagnosis only when the handoff mode permits it. The rebuttal skill is isolated from the default pre-submission loop: it is used only when the user explicitly asks for rebuttal, author response, response letter, or reviewer-comment response.
 
 <p align="center">
   <img src="assets/ccfa-skills-architecture.svg" alt="CCFA Skills workflow gates" width="100%">
@@ -94,11 +106,29 @@ Evaluates the problem and method before the manuscript exists. It uses multiple 
 
 Its purpose is not to reward confidence. It distinguishes low novelty from unknown novelty, feasibility risk from weak framing, and fixable design issues from reasons to pivot. This is where an idea receives a research-level diagnosis before writing energy is spent.
 
+### `ccf-literature-search`
+
+Searches high-quality literature online, excludes MDPI by policy, classifies paper types, scores paper quality, and writes a literature-search folder with titles, links, scores, paper types, and notes.
+
+It feeds Related Work, Introduction, idea optimization, idea review, experiment design, and reviewer-risk diagnosis. Pure benchmark papers are marked separately rather than penalized for not being method papers.
+
+### `ccf-experiment-designer`
+
+Designs CCF-A experiment packages: datasets, benchmarks, baselines, ablations, metrics, robustness tests, failure analysis, and result-fill tables.
+
+It never fabricates results. When numbers are missing, it provides templates for the user to fill and marks which reviewer concern each experiment answers.
+
 ### `ccf-writing-skills`
 
-Develops a viable idea into a paper-level argument. It works through storyline, section planning, paragraph roles, claim-evidence mapping, venue adaptation, exemplar-informed writing moves, and score-lifting revisions.
+Develops a viable idea into a paper-level argument. It works through storyline, section planning, paragraph roles, claim-evidence mapping, venue adaptation, exemplar-informed writing moves, and score-risk revisions.
 
 The central discipline is consistency: the abstract, introduction, method, experiments, limitations, and conclusion should all tell the same research story at different resolutions.
+
+### `ccf-paper-compressor`
+
+Compresses paper sections or full manuscripts to a page or word target while protecting the paper story, claims, evidence, results, and limitations.
+
+It can run in quick mode for local shortening or standard mode for full-section/page-limit compression. When appendix-vs-delete choices matter, it asks once and then applies the chosen policy consistently.
 
 ### `ccf-conference-paper-reviewer`
 
@@ -118,6 +148,10 @@ Provides the engineering layer for building and maintaining skills. It covers na
 
 It keeps the family extensible: new domain skills can be added without turning the repository into a monolithic prompt document.
 
+### `ccf-common`
+
+Provides the shared control layer for CCFA routing, handoff modes, private-material safety, source registry, and venue-family mapping. It is not an ordinary research-writing skill; it is loaded by maintainers and sibling skills to keep behavior consistent.
+
 ## What The Family Optimizes For
 
 | Objective | Meaning |
@@ -136,9 +170,13 @@ Copy complete skill directories, not only `SKILL.md`. Several modules rely on `r
 ```text
 ccf-idea-optimizer
 ccf-idea-reviewer
+ccf-literature-search
+ccf-experiment-designer
 ccf-writing-skills
+ccf-paper-compressor
 ccf-conference-paper-reviewer
 ccf-conference-paper-rebuttal
+ccf-common
 forge-skills
 ```
 
@@ -223,7 +261,10 @@ To update an installation, run `git pull` in your local clone and copy the skill
 ```text
 Use ccf-idea-optimizer to refine this rough CVPR idea into a problem-method-evidence plan.
 Use ccf-idea-reviewer to rank these NeurIPS directions and identify fatal risks.
+Use ccf-literature-search to find and score high-quality related work for my Introduction.
+Use ccf-experiment-designer to design datasets, baselines, ablations, and result-fill tables.
 Use ccf-writing-skills to rebuild my introduction around the actual contribution.
+Use ccf-paper-compressor to reduce this Related Work section to 800 words.
 Use ccf-conference-paper-reviewer to simulate CCF-A reviewers before submission.
 Use ccf-conference-paper-rebuttal to draft a concise response from these reviews.
 ```

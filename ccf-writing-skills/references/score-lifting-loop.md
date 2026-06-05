@@ -1,12 +1,12 @@
-# Score-Lifting Loop
+# Score-Risk Loop
 
-Use this file when the user reports weak review scores, asks to improve acceptance odds, requests a pre-submission check, or wants a paper revised for AAAI/NeurIPS/ICML/ICLR/ACL/CVPR or another CCF-A venue.
+Use this file when the user reports weak review scores, asks to reduce rejection risk, requests a pre-submission check, or wants a paper revised for AAAI/NeurIPS/ICML/ICLR/ACL/CVPR or another CCF-A venue.
 
 ## Core Rule
 
-Raise likely scores by fixing reviewer deductions, not by making the prose sound more positive. A claim can be strengthened only when the paper contains or can add evidence. Otherwise weaken the claim, add the missing evidence, or mark the issue as requiring new results.
+Reduce review risk by fixing reviewer deductions, not by making the prose sound more positive. A claim can be strengthened only when the paper contains or can add evidence. Otherwise weaken the claim, add the missing evidence, or mark the issue as requiring new results.
 
-Before running this loop, load `references/writing-checklists.md` and use its score-lifting and final-readiness checks.
+Before running this loop, load `references/writing-checklists.md` and use its score-risk and final-readiness checks.
 
 ## Loop
 
@@ -35,6 +35,9 @@ Before running this loop, load `references/writing-checklists.md` and use its sc
    - writing-fixable,
    - analysis-fixable,
    - citation/positioning,
+   - literature-search,
+   - experiment-design,
+   - compression,
    - figure/table,
    - reproducibility,
    - requires-new-result,
@@ -45,7 +48,7 @@ Before running this loop, load `references/writing-checklists.md` and use its sc
    - then fix central contribution and evidence alignment,
    - then improve venue-specific presentation,
    - then polish local clarity.
-7. Re-score only after checking the revised text. Report expected score lift only for concrete changes.
+7. Re-score only after checking the revised text. Report conditional review-risk effects only for concrete changes and name the confidence level.
 8. Stop only when:
    - no central claim is unsupported,
    - no likely reviewer repeats a fatal concern,
@@ -89,7 +92,7 @@ Can writing fix it? yes / partly / no
 Required evidence:
 Where to revise:
 Concrete edit:
-Expected score impact:
+Risk-reduction condition:
 Status: open / fixed / requires new result / accepted limitation
 ```
 
@@ -103,6 +106,9 @@ Use these moves only when supported by the manuscript:
 - Replace broad claims with scoped, testable claims.
 - Explain why the method works, not just that it performs well.
 - Move decisive evidence into the main text or signpost appendix evidence clearly.
+- Use literature search for stale or missing closest work instead of adding guessed citations.
+- Use experiment design for missing baselines, ablations, or result-table structure instead of inventing numbers.
+- Use compression for page-limit fixes instead of deleting claim-critical evidence.
 - Add figure/table captions that state what a reviewer should learn.
 - Make limitations precise so they bound risk instead of weakening the whole paper.
 - Align Abstract, Introduction, Experiments, and Conclusion claims.

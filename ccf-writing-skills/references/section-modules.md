@@ -64,6 +64,7 @@ Recommended structure:
 Checks:
 
 - Are strongest and recent competitors included?
+- If closest work is unknown or fast-moving, use `ccf-literature-search` through the CCFA handoff mode rather than inventing citations.
 - Is the distinction technical, not marketing language?
 - Does Related Work prepare the reader for the Method?
 - Are citations complete for all background claims?
@@ -110,6 +111,7 @@ Recommended structure:
 Checks:
 
 - Does each claimed contribution have a corresponding experiment?
+- If the user needs datasets, baselines, ablations, benchmark design, or fill-in result tables, use `ccf-experiment-designer` through the CCFA handoff mode.
 - Are baselines strong, recent, and fair?
 - Are metrics standard and sufficient?
 - Are ablations tied to modules and design choices?

@@ -45,6 +45,18 @@ description: "What the skill does and exactly when to use it."
 ---
 ```
 
+For CCFA family skills, also preserve this metadata block unless the user explicitly requests a family-policy change:
+
+```yaml
+metadata:
+  ccf_skill_controls:
+    handoff_question_mode: partial
+    respect_session_denylists: true
+    protect_idea_scope_in_writing: true
+    private_material_safety: moderate
+    shared_controls: ../ccf-common/references/
+```
+
 Make the `description` do all trigger work:
 
 - Include task verbs and user phrases.
@@ -72,6 +84,7 @@ Check these before finishing:
 - `description` is non-empty, specific, and trigger-rich.
 - `SKILL.md` has no unfinished placeholders.
 - Referenced files exist.
+- CCFA family skills preserve the shared `ccf_skill_controls` keys and use `ccf-common` for routing, handoff, privacy, and source-registry policy.
 - Optional directories contain only useful files.
 - Scripts, if any, were executed on a representative example.
 - `agents/openai.yaml`, if present, matches the skill and uses a correct `$skill-name` default prompt.

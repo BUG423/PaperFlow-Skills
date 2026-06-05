@@ -2,6 +2,8 @@
 
 Use this file when turning an optimized idea into a minimum convincing evidence package for a CCF-A submission.
 
+For a full experiment plan, dataset/baseline search, benchmark protocol, or result-fill table, use `ccf-experiment-designer` through the CCFA handoff mode. This file is the local lightweight evidence planner for idea optimization.
+
 ## Evidence Principle
 
 Design experiments to answer the reviewer question, "Does the evidence test the central claim?" Do not add experiments for volume. Every experiment should defend novelty, soundness, significance, generalization, efficiency, or scope.
