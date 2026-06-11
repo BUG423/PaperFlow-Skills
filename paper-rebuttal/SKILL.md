@@ -1,129 +1,150 @@
 ---
 name: paper-rebuttal
-description: "审稿回复：帮助研究者分析审稿意见、制定回应策略、起草具体回复。仅当用户提供了真实审稿意见并要求写 rebuttal 时激活。中文触发：rebuttal、审稿回复、作者回应、response letter、回复审稿人、审稿意见回复。"
+description: "把真实审稿意见转成结构化 rebuttal 回复。固定 5 步线性流程: 读上游+真实审稿意见 → 分类所有意见 → 按影响力排优先级 → 逐条起草回复 → 最终结构整合落盘。仅当用户提供真实审稿意见且明确要求写 rebuttal 时激活。触发: rebuttal、审稿回复、作者回应、response letter、回复审稿人、审稿意见回复。"
 ---
 
-# 审稿回复
+# paper-rebuttal: 5 步写出 rebuttal
 
-## 你的角色
+## 这个 skill 是什么
 
-你是一个有 rebuttal 经验的研究者。你知道 rebuttal 的核心不是"说服审稿人你是对的"，而是**降低审稿人的不确定性**——帮他看清楚他已经有的信息，补充他缺失的信息，纠正他误解的信息。
+一台**线性流水线工具**,把真实审稿意见转成 `paperflow/rebuttal.md`。
 
-## Rebuttal 的本质
+**核心理念**: rebuttal 不是说服审稿人你是对的,而是**降低审稿人的不确定性**——帮他看清已有信息、补缺失信息、纠正误解。
 
-审稿人给了低分，通常不是因为"这篇论文我完全看不上"，而是因为"我有几个 concerns 没有被 address"。Rebuttal 的目标就是 address 这些 concerns：
+**激活条件**: 仅当用户**提供真实审稿意见**且**明确要求写 rebuttal** 时才激活。**不在写论文或模拟审稿阶段自动触发**。
 
-- 如果 concern 是基于误解 → 澄清，但别用"你理解错了"的语气
-- 如果 concern 是缺少证据 → 如果证据已经有了（但论文里没展示清楚），指出位置；如果没有，看能不能在 rebuttal 期间补充
-- 如果 concern 是正确的指出了方法的局限 → 诚实承认，说明你已经在论文里讨论了，或者你会在 camera-ready 中加入讨论
-- 如果 concern 是审稿人要求做不可行的实验 → 解释为什么不可行，同时说明你在力所能及的范围内做了什么
+## Step 1: 读上游 + 真实意见 (机器活)
 
-## Rebuttal 策略
+**读用户提供的真实审稿意见**——这永远是第一信息源。
 
-### 第一步：分类所有意见
+**辅助读** `paperflow/`:
+- `review.md` (若存在): 投稿前模拟审稿。真实审稿人提的 concern 如果模拟审稿也提到了,说明这是真实软肋,回应要扎实
+- `results.md` / `claims.md`: 审稿人质疑数字或 claim 时,回到这两个文件核实证据
+- `references.bib`: 需要在 rebuttal 引新工作时从这里取 key
 
-拿到审稿意见后，先分类而不是急着回复：
+**纪律**: `review.md` 是参考,**不是答案**——一切以用户提供的真实审稿意见为准。
 
-**共同的（多个审稿人都提到的）**：
-这是最重要的。如果 R1 和 R2 都说同样的问题，说明这不是某个审稿人"没看懂"，而是论文本身在这个点上确实有缺陷或没表达清楚。共同问题必须在 rebuttal 开头集中回应。
+## Step 2: 分类所有意见
 
-**可以快速解决的**：
-审稿人提出了一个具体的问题，而答案在你的论文中已经存在（只是他没注意到或者你没写清楚）。这类问题可以引用具体位置来回应。
+把所有 concern (包括 AC/meta-review 的) 按下表分类:
 
-**需要补充证据的**：
-审稿人的 concern 是合理的，你的论文确实缺少某方面的证据。如果补充实验/分析可以在 rebuttal 期间完成，这是最有力的 rebuttal——"我们做了你建议的实验，结果说明..."。如果不能在此期间完成，诚实说明并承诺 camera-ready。
+| 分类 | 含义 | 处理策略 |
+|------|------|---------|
+| **共同的** | 多个审稿人都提到的 | 这是论文真实软肋,在 rebuttal 开头集中回应 (General Response 或 Common Concerns) |
+| **可快速解决** | 答案已经在论文中只是审稿人没注意 | 引用具体位置回应 |
+| **需补充证据** | concern 合理,论文确实缺 | 优先在 rebuttal 期间做实验补 — 这是最有力的 rebuttal |
+| **基于误解** | 审稿人理解错了方法/结论 | 措辞: "我们澄清一下" / "我们 originally 的表述可能不够清晰",不说"你理解错了" |
+| **无法解决** | 真实的根本性局限 | 承认 + 说明论文已讨论 (或承诺加上) + 解释为什么贡献仍有意义 |
 
-**基于误解的**：
-审稿人理解错了你的方法或结论。回应时要小心措辞——不要说"你理解错了"，而是说"我们澄清一下"、"我们 originally 的表述可能不够清晰"。
+输出一张分类表给用户看一眼,**确认无误**后进 Step 3。
 
-**无法解决的**：
-审稿人指出了一个真实的、根本性的局限。强行辩护只会让审稿人更确信你的方法有问题。更好的策略是：承认局限，说明你在论文中已经讨论了这一点（如果没有，承诺会加上），并解释为什么尽管有这个局限，你的贡献仍然有意义。
+## Step 3: 排优先级
 
-### 第二步：排优先级
+按**对最终决定的影响**排,不是按回复难度:
 
-按影响分数的程度排序，而不是按回复难度排序：
+1. **AC / meta-review 的 concerns** (直接影响最终决定)
+2. **多个审稿人共同提到的** (共识问题)
+3. **低分审稿人的核心 concerns** (拉高他的关键)
+4. **高分审稿人的 concerns** (避免他被带偏)
+5. **细节和小问题** (快速回应,不占篇幅)
 
-1. **AC / meta-review 的 concerns**（如果有的话）— AC 的评价直接影响最终决定
-2. **多个审稿人共同提到的** — 共识问题
-3. **低分审稿人的核心 concerns** — 要把他从 reject 拉到 borderline 以上
-4. **高分审稿人的 concerns** — 避免他从 accept 被带偏到 reject
-5. **细节和小问题** — 快速回应，不要占用太多篇幅
+输出优先级表给用户确认。
 
-### 第三步：起草每条回复
+## Step 4: 逐条起草回复
 
-每条回复的模板：
+**每条回复模板**:
 
-```
-[审稿人标签] Concern #N: [一句话复述审稿人的 concern]
+```markdown
+[审稿人标签] Concern #N: <一句话复述审稿人的 concern>
 
-Response: [第一句话直接回应核心问题]
+Response: <第一句话直接回应核心问题>
 
 [如果有证据] As shown in Table X / Figure Y / Section Z, ...
-[如果做了新实验] We conducted additional experiments on ... The results show ...
-[如果承认局限] We agree with the reviewer that ... We have added a discussion in Section ...
+[如果做了新实验] We conducted additional experiments on ... Results show ...
+[如果承认局限] We agree with the reviewer that ... We have added discussion in Section ...
 [如果澄清误解] To clarify, our method does not ... Instead, it ...
 
-[修改承诺] We will add/revise/clarify ... in the camera-ready version.
+[修改承诺] We will add/revise/clarify ... in the camera-ready.
 ```
 
-**长度的艺术**：
-- 重要问题：150-250 词，充分回应
-- 次要问题：50-100 词，简洁回应
-- 格式/typo 问题：一行，"Thank you. We have corrected this."
+### 4.1 长度的艺术
 
-**语气的分寸**：
-- "We thank the reviewer for this insightful comment." — 好的开头
-- "We respectfully disagree." — 可以用，但后面必须跟上具体理由
-- "The reviewer is mistaken." — 永远不要用
-- "We believe the reviewer misunderstood." — 改成 "Our original presentation may have been unclear. To clarify..."
+- 重要问题: 150-250 词,充分回应
+- 次要问题: 50-100 词,简洁
+- 格式/typo: 一行,"Thank you. We have corrected this."
 
-### 第四步：整体结构
+### 4.2 语气的分寸
 
+| 用法 | 评价 |
+|------|------|
+| "We thank the reviewer for this insightful comment." | 好的开头 |
+| "We respectfully disagree." | 可以用,但后面必须跟具体理由 |
+| "The reviewer is mistaken." | **永远不要用** |
+| "We believe the reviewer misunderstood." | **不要用** — 改成 "Our original presentation may have been unclear. To clarify..." |
+
+### 4.3 新实验数据的纪律
+
+如果审稿人要求补实验,在 rebuttal 时间内能做就做——**但补出来的数字必须真实跑出来**,不能口头声称"效果提升了"。Claude 这里只起草框架,具体数字必须等用户跑完实验后填,**不替用户编**。
+
+## Step 5: 落盘 rebuttal.md
+
+```markdown
+> stage: rebuttal | updated: <YYYY-MM-DD>
+
+# Rebuttal
+
+## General Response (可选,有 meta-review 时建议写)
+We thank all reviewers for their constructive feedback. We address the most common concerns first, followed by individual responses.
+
+**Summary of revisions**:
+- 新实验 X 已完成,结果见 Section A
+- 误解的方法描述已重写 §3.2
+- 局限性讨论已扩展 §5
+
+## Common Concerns (多审稿人共同提到)
+**C1**: <问题> — <Response>
+**C2**: ...
+
+## Response to Reviewer 1
+**R1.Q1**: <concern>
+**Response**: ...
+**R1.Q2**: ...
+
+## Response to Reviewer 2
+...
+
+## Response to Reviewer 3
+...
 ```
-General Response（可选，如果 AC 给了 meta-review 则建议写）
-  - 感谢
-  - 概述主要的修改和新证据
 
-Common Concerns（如果有多个审稿人都提到的问题）
-  - C1: [问题] — [回应]
-  - C2: [问题] — [回应]
+**更新 manifest.md** 的 `rebuttal` 行为 `done`。
 
-Response to Reviewer 1
-  - R1.Q1: [concern] — [response]
-  - R1.Q2: ...
+## Step 5.5: 最后检查清单
 
-Response to Reviewer 2
-  - ...
+提交前再过一遍:
 
-Response to Reviewer 3
-  - ...
+```markdown
+- [ ] 每一个 concern 都有回应吗? (遗漏 = 审稿人觉得你回避)
+- [ ] 每条回应具体吗? 没有空洞的"我们会改进"?
+- [ ] 新做的实验有数据支撑吗? 不是只是口头说"效果提升了"?
+- [ ] 修改承诺能在 camera-ready 截止日前完成吗?
+- [ ] 语气对不对? 整篇读起来像在"讲道理"还是在"争辩"?
+- [ ] 字数有没有严重超标?
 ```
-
-### 第五步：最后检查
-
-提交之前再过一遍：
-
-- [ ] 每一个 concern 都有回应吗？（遗漏 = 审稿人觉得你回避）
-- [ ] 每一条回应具体吗？有没有空洞的"我们会改进"？
-- [ ] 新做的实验有数据支撑吗？还是只是口头说"效果提升了"？
-- [ ] 修改承诺能在 camera-ready 截止日前完成吗？
-- [ ] 语气对不对？整篇读起来像是在"讲道理"还是在"争辩"？
-- [ ] 字数有没有严重超标？
 
 ## 特殊场景
 
 ### 审稿人之间互相矛盾
-
-R1 说你应该做 X，R2 说你不需要做 X。在 Common Concerns 或 General Response 中说明这个情况——AC 会看到并理解。
+R1 说做 X, R2 说不需要 X — 在 Common Concerns 或 General Response 中说明这个情况,AC 会看到并理解。
 
 ### 审稿人明显不专业
+仍然礼貌回应,**不要**指责。AC 通常能看出审稿质量问题,你的专业回应反而加分。
 
-如果某条审稿意见明显不专业（一句话、没有具体内容、完全误解了基本设定），仍然礼貌回应。AC 通常能看出这种审稿意见的问题。你的专业回应反而会加分。
-
-### 审稿人要求你做明显不可行的实验
-
-解释为什么这个实验不可行（比如需要不可获取的数据、需要几万 GPU 小时、违背了方法的设定）。同时说明你做了什么替代方案来部分验证同一 concern。
+### 审稿人要求做不可行的实验
+解释为什么不可行 (需要不可获取的数据 / 几万 GPU 小时 / 违背方法设定),同时说明做了什么替代方案。
 
 ## 边界
 
-这个 skill 只在研究者提供了**真实的审稿意见**并且**明确要求写 rebuttal**后才激活。不要在论文写作或模拟审稿阶段自动触发 rebuttal。
+- **只在用户提供真实审稿意见时激活**——不在论文写作或模拟审稿阶段自动触发
+- **不替用户编数字**——新实验的数字必须等用户跑完
+- **不替用户做撤稿/不再投这家的决定**——用户判断
